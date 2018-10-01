@@ -1,5 +1,8 @@
 window.onload = function(){
     
+    //TODO: hacer que las celdas contiguas a las minas tengan su numero correspondiente
+    //TODO: hacer que cada celda con mina tenga su propia variable booleana 
+
     document.getElementById("chkPrincipiante").addEventListener('click', juegoPrincipiante, false); 
     document.getElementById("chkIntermedio").addEventListener('click', juegoIntermedio, false); 
     document.getElementById("chkExperto").addEventListener('click', juegoExperto, false); 
@@ -7,48 +10,59 @@ window.onload = function(){
 
     document.getElementById("botonReiniciar").style.display = "none";
 
-    //TODO hacer que genere bombas y las distribuya por el tablero 
-
     //Tabla para principiantes 8x8 
     function juegoPrincipiante(){
-        document.getElementById("divTablero").style.display = "block";
+        const fil = 8;
+        const col = 8;
+        const numBombas = 8;
 
         document.getElementById("botonReiniciar").style.display = "block";
         document.getElementById("divChecks").style.display = "none";
 
-        tablaPrincipiante();
-        generarBombasPrincipiante();
+        generaTablas(fil, col);
+        generaBombas(numBombas, fil, col);  
     }
 
     //Tabla de nivel intermedio 16x16
-    function juegoIntermedio(){                 
+    function juegoIntermedio(){ 
+        const fil = 16;
+        const col = 16;     
+        const numBombas = 40;  
+
         document.getElementById("botonReiniciar").style.display = "block";
         document.getElementById("divChecks").style.display = "none";
 
-        tablaIntermedio();
+        generaTablas(fil, col);
+        generaBombas(numBombas, fil, col);
     }
 
-    //Tabla de nivel experto 31x16
-    function juegoExperto(){                
+    //Tabla de nivel experto 30x16
+    function juegoExperto(){   
+        const fil = 16;
+        const col = 30; 
+        const numBombas = 99; 
+
         document.getElementById("botonReiniciar").style.display = "block";
         document.getElementById("divChecks").style.display = "none";
 
-        tablaExperto();
+        generaTablas(fil, col);
+        generaBombas(numBombas, fil, col);
     }
 
-    function tablaPrincipiante(){
-        //Creamos una tabla de forma dinamica 8x8 
+    //Funcion para general tablas 
+    function generaTablas(fil, col){
         const divTablero = document.getElementById("divTablero");
 
         let tabla = document.createElement("table");
         let tblBody = document.createElement("tbody");
 
-        for(let i = 0; i < 8; i++){
+        for(let i = 0; i < fil; i++){
             let filas = document.createElement("tr");
-            for(let j = 0; j < 8; j++){
-                let columnas = document.createElement("td");
+        
+            for(let j = 0; j < col; j++){
+                let columnas = document.createElement("td"); 
                 columnas.id = i+""+j; 
-                filas.appendChild(columnas);               
+                filas.appendChild(columnas); 
                 //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
                 //Aqui habra que poner la funcion buena pero por el momento va guay 
                 columnas.addEventListener('click', clicks, false);
@@ -62,67 +76,28 @@ window.onload = function(){
 
         tabla.setAttribute("border", 2);
     }
+
+    //Funcion para general bombas 
+    function generaBombas(numBombas, fil, col){
+        for(let j = 0; j < numBombas; j++){
+            let rndFilas = Math.floor((Math.random()*fil));
+            let rndColumnas = Math.floor((Math.random()*col));
             
-
-    function tablaIntermedio(){
-        //Creamos una tabla de forma dinamica 16x16 
-        const divTablero = document.getElementById("divTablero");
-
-        let tabla = document.createElement("table");
-        let tblBody = document.createElement("tbody");
-
-        for(let i = 0; i < 16; i++){
-            let filas = document.createElement("tr");
-        
-            for(let j = 0; j < 16; j++){
-                let columnas = document.createElement("td"); 
-                columnas.id = i+""+j; 
-                filas.appendChild(columnas); 
-                //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
-                //Aqui habra que poner la funcion buena pero por el momento va guay 
-                columnas.addEventListener('click', clicks, false);
-            }
-            
-            tblBody.appendChild(filas); 
+            let celdaMina = document.getElementById(rndFilas+""+rndColumnas);
+            celdaMina.innerHTML = "*";
         }
-
-        tabla.appendChild(tblBody); 
-        divTablero.appendChild(tabla); 
-
-        tabla.setAttribute("border", 2);  
-    }
-
-    function tablaExperto(){
-        //Creamos una tabla de forma dinamica 16x32 
-        const divTablero = document.getElementById("divTablero");
-
-        let tabla = document.createElement("table");
-        let tblBody = document.createElement("tbody");
-
-        for(let i = 0; i < 16; i++){
-            let filas = document.createElement("tr");
-        
-            for(let j = 0; j < 32; j++){
-                let columnas = document.createElement("td"); 
-                columnas.id = i+""+j; 
-                filas.appendChild(columnas); 
-                //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
-                //Aqui habra que poner la funcion buena pero por el momento va guay 
-                columnas.addEventListener('click', clicks, false);
-            }
-            
-            tblBody.appendChild(filas); 
-        }
-
-        tabla.appendChild(tblBody); 
-        divTablero.appendChild(tabla); 
-
-        tabla.setAttribute("border", 2);  
     }
 
     //Funcion comodin para los clicks en celdas 
     function clicks(){
         console.log("Los clicks en celdas funcionan");
+        /*
+        if(bomba == true){
+            console.log("Aqui hay una bomba");
+        }else{
+            console.log("Aqui no hay bomba");
+        }
+        */
     }
 
     //Reinicio del juego
