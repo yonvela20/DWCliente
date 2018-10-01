@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>El primer script</title>
+ 
+<script type="text/javascript">
+
+    var valores = [true, 5, false, "hola", "adios", 2];
+
+    if(valores[3]<valores[4]){
+        alert(valores[4] + " es mas grande");
+    } else {
+        alert(valores[3] + "es mas grande");
+    }
+
+    var valor1 = valores[0];
+    var valor2 = valores[2];
+ 
+    var resultado = valor1 || valor2;
+    alert(resultado);
+ 
+    resultado = valor1 && valor2;
+    alert(resultado);
+
+    alert(valores[1]+valores[5]);
+    alert(valores[1]-valores[5]);
+    alert(valores[1]*valores[5]);
+    alert(valores[1]/valores[5]);
+    alert(valores[1]%valores[5]);
+
+</script>
+</head>
+<body>
+    <p>Prueba con arrays y operadores basicos</p>
+</body>
+</html>

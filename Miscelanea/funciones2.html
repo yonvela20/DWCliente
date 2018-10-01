@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<title>Funciones 2</title>
+
+<script type= text/javascript>
+
+    var texto = "hola que tal"; 
+    
+    function cadenas(texto) {
+        resultado = "la cadena " + texto; 
+
+        if(texto == texto.toLowerCase()){
+            resultado += " esta formado por todo minusculas";
+        } else if(texto == texto.toUpperCase()){
+            resultado += " esta formado por todo mayusculas";
+        } else {
+            resultado += " esta formado por mayusculas y minusculas"
+        }
+    }
+
+    alert(cadenas("hola que tal"))
+
+</script>
+</head>
+</html>
