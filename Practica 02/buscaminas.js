@@ -20,7 +20,8 @@ window.onload = function(){
         document.getElementById("divChecks").style.display = "none";
 
         generaTablas(fil, col);
-        generaBombas(numBombas, fil, col);  
+        generaBombas(numBombas, fil, col); 
+        reparteNumeros(fil, col); 
     }
 
     //Tabla de nivel intermedio 16x16
@@ -34,6 +35,7 @@ window.onload = function(){
 
         generaTablas(fil, col);
         generaBombas(numBombas, fil, col);
+        reparteNumeros(fil, col); 
     }
 
     //Tabla de nivel experto 30x16
@@ -47,6 +49,8 @@ window.onload = function(){
 
         generaTablas(fil, col);
         generaBombas(numBombas, fil, col);
+        reparteNumeros(fil, col); 
+
     }
 
     //Funcion para general tablas 
@@ -84,29 +88,22 @@ window.onload = function(){
             let rndColumnas = Math.floor((Math.random()*col));
             
             let celdaMina = document.getElementById(rndFilas+""+rndColumnas);
+            
             celdaMina.innerHTML = "*";
+            //Intentando hacer que no se repitan las celdas donde ya hay una mina 
+            
+            let textoCelda = document.getElementById(rndFilas+""+rndColumnas).textContent;
 
-            //console.log("creo mina en "+rndFilas+""+rndColumnas);
+            console.log(textoCelda);
 
-            //let numeroMinas = 0;
-            /*
-            if(celdaMina == "*"){
+/*             if (textoCelda != "*"){
+                celdaMina.innerHTML = "*";
+            }else{
                 return false;
-            } else {
-                let celdaNumeroDerecha = document.getElementById(rndFilas+""+rndColumnas-1);
-                let celdaNumeroIzquierda = document.getElementById(rndFilas+""+rndColumnas+1);
-                let celdaNumeroArriba = document.getElementById(rndFilas-1+""+rndColumnas+1);
-                let celdaNumeroAbajo = document.getElementById(rndFilas+1+""+rndColumnas-1);
-                
-                //numeroMinas++;
-                
-                celdaNumeroDerecha.innerHTML += 1;
-                celdaNumeroIzquierda.innerHTML += 1;
-                celdaNumeroArriba.innerHTML += 1;
-                celdaNumeroAbajo.innerHTML += 1;
             }
-            */
+             */
         }
+        //console.log(numBombas);
     }
 
     //Funcion comodin para los clicks en celdas 
@@ -119,6 +116,48 @@ window.onload = function(){
             console.log("Aqui no hay bomba");
         }
         */
+    }
+
+    function reparteNumeros(fil, col){
+        let bombas = 0;
+
+        for(let i = 0; i < fil; i++){
+            for(let j = 0; j < col; j++){
+                contadorMinas = 0;
+
+                celda = document.getElementById(i+""+j);
+                
+                celdaDerecha = document.getElementById(i+""+j+1);
+                celdaIzquierda = document.getElementById(i+""+j-1);
+                
+                celdaAbajo = document.getElementById(i-1+""+j);
+                celdaArriba = document.getElementById(i+1+""+j);
+                
+                celdaDiagonalIzqSup = document.getElementById(i-1+""+j-1);
+                celdaDiagonalIzqInf = document.getElementById(i+1+""+j-1);
+
+                celdaDiagonalDerSup = document.getElementById(i+1+""+j+1);
+                celdaDiagonalDerInf = document.getElementById(i-1+""+j+1);
+
+                textoCelda = document.getElementById(i+""+j).textContent;
+                
+                if(textoCelda == "*"){ 
+                    bombas ++;             
+/*                  celdaDerecha.innerHTML = contadorMinas+=contadorMinas+1;
+                    celdaIzquierda.innerHTML = contadorMinas+=contadorMinas+1;
+                    
+                    celdaAbajo.innerHTML = contadorMinas+=contadorMinas+1;
+                    celdaArriba.innerHTML = contadorMinas+=contadorMinas+1;
+                    
+                    celdaDiagonalIzqSup.innerHTML = contadorMinas+=contadorMinas+1;
+                    celdaDiagonalIzqInf.innerHTML = contadorMinas+=contadorMinas+1;
+
+                    celdaDiagonalDerSup.innerHTML = contadorMinas+=contadorMinas+1;
+                    celdaDiagonalDerInf.innerHTML = contadorMinas+=contadorMinas+1;  */
+                }
+            }
+        }
+        console.log(bombas);
     }
 
     //Reinicio del juego
