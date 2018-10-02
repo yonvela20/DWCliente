@@ -85,6 +85,27 @@ window.onload = function(){
             
             let celdaMina = document.getElementById(rndFilas+""+rndColumnas);
             celdaMina.innerHTML = "*";
+
+            //console.log("creo mina en "+rndFilas+""+rndColumnas);
+
+            //let numeroMinas = 0;
+            /*
+            if(celdaMina == "*"){
+                return false;
+            } else {
+                let celdaNumeroDerecha = document.getElementById(rndFilas+""+rndColumnas-1);
+                let celdaNumeroIzquierda = document.getElementById(rndFilas+""+rndColumnas+1);
+                let celdaNumeroArriba = document.getElementById(rndFilas-1+""+rndColumnas+1);
+                let celdaNumeroAbajo = document.getElementById(rndFilas+1+""+rndColumnas-1);
+                
+                //numeroMinas++;
+                
+                celdaNumeroDerecha.innerHTML += 1;
+                celdaNumeroIzquierda.innerHTML += 1;
+                celdaNumeroArriba.innerHTML += 1;
+                celdaNumeroAbajo.innerHTML += 1;
+            }
+            */
         }
     }
 
