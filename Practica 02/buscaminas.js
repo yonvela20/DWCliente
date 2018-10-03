@@ -22,6 +22,7 @@ window.onload = function () {
         generaTablas(fil, col);
         generaBombas(numBombas, fil, col);
         reparteNumeros(fil, col);
+        setTablaImagen(fil, col);
     }
 
     //Tabla de nivel intermedio 16x16
@@ -66,6 +67,8 @@ window.onload = function () {
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
                 columnas.id = i + "" + j;
+
+                //columnas.setAttribute("id", [i][j]);
                 filas.appendChild(columnas);
                 //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
                 //Aqui habra que poner la funcion buena pero por el momento va guay 
@@ -90,7 +93,10 @@ window.onload = function () {
             let rndColumnas = Math.floor((Math.random() * col));
 
             let celdaMina = document.getElementById(rndFilas + "" + rndColumnas);
+            //let celdaMina = document.getElementById([rndFilas][rndColumnas]);
+
             let textoCelda = document.getElementById(rndFilas + "" + rndColumnas).textContent;
+            //let textoCelda = document.getElementById([rndFilas][rndColumnas]).textContent;
 
             //console.log(textoCelda)                
             if (textoCelda != "*") {
@@ -105,14 +111,14 @@ window.onload = function () {
 
     //Funcion comodin para los clicks en celdas 
     function clicks() {
-        console.log("Los clicks en celdas funcionan");
-        /*
-        if(bomba == true){
-            console.log("Aqui hay una bomba");
-        }else{
-            console.log("Aqui no hay bomba");
+        if(event.target.innerHTML == "*"){
+            console.log("Has clickado una bomba");
+            endGame();
+        } else{
+            console.log("Has clickado agua");
         }
-        */
+        
+
     }
 
     function reparteNumeros(fil, col) {
@@ -123,6 +129,9 @@ window.onload = function () {
                 let contadorMinas = 0;
 
                 celda = document.getElementById(i + "" + j);
+                //celda = document.getElementById([i][j]);
+
+                //console.log(celda);
 
                 let celdaDerecha = document.getElementById(i + "" + (j + 1));
                 let celdaIzquierda = document.getElementById(i + "" + (j - 1));
@@ -136,10 +145,14 @@ window.onload = function () {
                 let celdaDiagonalDerSup = document.getElementById((i + 1) + "" + (j + 1));
                 let celdaDiagonalDerInf = document.getElementById((i - 1) + "" + (j + 1));
 
+                //celdaDerecha.outerHTML || celdaIzquierda.outerHTML || celdaAbajo.outerHTML || celdaArriba.outerHTML
                 //TODO: Condicion para que no pille celdas fuera de la tabla
-                if(i<0 || j<0){
+                
+                if(i<0 || i>fil || j<0 || j>col){ //no
+                    console.log("entro en el if");
                     return false;
                 } else {
+                    console.log("entro en el else");
                     if (celdaDerecha.textContent == "*") {
                         contadorMinas = contadorMinas + 1;
                     }
@@ -165,14 +178,37 @@ window.onload = function () {
                         contadorMinas = contadorMinas + 1;
                     }
                 }
-                celda.innerHTML = contadorMinas;
+                celda.innerHTML = contadorMinas; 
             }
         }
     }
     //console.log(bombas);
+    
+    //Poner las imagenes base
+    //No churula ufo
+    function setTablaImagen(fil, col){
+        const imageObj = new Image();
+        imageObj.src = "blank.gif";
+
+        for (let i = 0; i < fil; i++) {
+            for (let j = 0; j < col; j++) {
+                celda = document.getElementById(i+""+j);
+    
+                celda.drawImage(imageObj, 0, 0);
+            }
+        }
+    }
+
+    //Reinicio del juego
+    function reiniciar() {
+        window.location.reload();
+    }
+
+    //Se acabo el juego 
+    function endGame(){
+        alert("Has perdido :(")
+        reiniciar();
+    }
 }
 
-//Reinicio del juego
-function reiniciar() {
-    window.location.reload();
-}
+
