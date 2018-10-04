@@ -208,9 +208,10 @@ window.onload = function () {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
+                    celda.innerHTML = contadorMinas;         
+
                 } 
                 //Ponemos en la celda el numero correspondiente
-                celda.innerHTML = contadorMinas;         
             }
         }
     }
