@@ -22,7 +22,7 @@ window.onload = function () {
         generaTablas(fil, col);
         generaBombas(numBombas, fil, col);
         reparteNumeros(fil, col);
-        setTablaImagen(fil, col);
+        //setTablaImagen(fil, col);
     }
 
     //Tabla de nivel intermedio 16x16
@@ -63,7 +63,7 @@ window.onload = function () {
 
         for (let i = 0; i < fil; i++) {
             let filas = document.createElement("tr");
-
+            filas.id = i;
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
                 columnas.id = i + "" + j;
@@ -124,68 +124,114 @@ window.onload = function () {
     function reparteNumeros(fil, col) {
         //let bombas = 0;
 
+        //La i son las filas y la j son las columnas
         for (let i = 0; i < fil; i++) {
             for (let j = 0; j < col; j++) {
                 let contadorMinas = 0;
-
-                celda = document.getElementById(i + "" + j);
-                //celda = document.getElementById([i][j]);
-
-                //console.log(celda);
-
-                let celdaDerecha = document.getElementById(i + "" + (j + 1));
-                let celdaIzquierda = document.getElementById(i + "" + (j - 1));
-
-                let celdaAbajo = document.getElementById((i - 1) + "" + j);
-                let celdaArriba = document.getElementById((i + 1) + "" + j);
-
-                let celdaDiagonalIzqSup = document.getElementById((i - 1) + "" + (j - 1));
-                let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
-
-                let celdaDiagonalDerSup = document.getElementById((i + 1) + "" + (j + 1));
-                let celdaDiagonalDerInf = document.getElementById((i - 1) + "" + (j + 1));
-
-                //celdaDerecha.outerHTML || celdaIzquierda.outerHTML || celdaAbajo.outerHTML || celdaArriba.outerHTML
-                //TODO: Condicion para que no pille celdas fuera de la tabla
                 
-                if(i<0 || i>fil || j<0 || j>col){ //no
-                    console.log("entro en el if");
-                    return false;
-                } else {
-                    console.log("entro en el else");
-                    if (celdaDerecha.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaIzquierda.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaAbajo.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaArriba.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaDiagonalIzqSup.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaDiagonalIzqInf.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaDiagonalDerSup.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
-                    if (celdaDiagonalDerInf.textContent == "*") {
-                        contadorMinas = contadorMinas + 1;
-                    }
+                filas = document.getElementById(i);
+                celda = document.getElementById(i + "" + j);
+
+                if(filas.id == 0){
+                    console.log(i);
+                    console.log(j);
+                    if(celda.id == 0+""+0){
+                        
+                        let celdaDerecha = document.getElementById(i + "" + (j + 1));
+                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
+                        let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
+    
+                        if (celdaDerecha.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                            console.log("Tengo una mina a la derecha");
+                        }                    
+                        if (celdaAbajo.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                            console.log("Tengo una mina abajo");
+                        }
+                        if (celdaDiagonalDerInf.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                            console.log("TEngo una mina en la diagonal izquierda");
+                        }
+                        celda.innerHTML = contadorMinas; 
+    
+                        console.log("Esquina superior izquierda");
+                    } 
+
+                    if(celda.id == 0+""+col){
+                        let celdaIzquierda = document.getElementById(i + "" + (j - 1));
+                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
+                        let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
+    
+                        if (celdaIzquierda.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaAbajo.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaDiagonalIzqInf.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        celda.innerHTML = contadorMinas; 
+    
+                        console.log("Esquina superior derecha");  
+                    } 
                 }
-                celda.innerHTML = contadorMinas; 
+
+                if(filas.id == fil){
+                    //Esquina inferior izquierda
+                    if(celda.id == fil+""+0){
+
+                        let celdaArriba = document.getElementById((i - 1) + "" + j);
+                        let celdaDerecha = document.getElementById(i + "" + (j + 1));
+                        let celdaDiagonalDerSup = document.getElementById((i - 1) + "" + (j + 1));
+
+                        if (celdaArriba.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaDerecha.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaDiagonalDerSup.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        celda.innerHTML = contadorMinas; 
+
+                        console.log("Esquina inferior izquierda");
+                    } 
+                    //Esquina inferior derecha 
+                    if(celda.id == fil+""+col){
+                        let celdaArriba = document.getElementById((i - 1) + "" + j);
+                        let celdaIzquierda = document.getElementById(i + "" + (j - 1));
+                        let celdaDiagonalIzqSup = document.getElementById((i - 1) + "" + (j - 1));
+
+                        if (celdaArriba.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaIzquierda.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        if (celdaDiagonalIzqSup.textContent == "*") {
+                            contadorMinas = contadorMinas + 1;
+                        }
+                        celda.innerHTML = contadorMinas; 
+
+                        console.log("Esquina inferior derecha");
+                    }
+                }            
+
+                //celda.innerHTML = contadorMinas; 
+
             }
+
+
         }
+
     }
     //console.log(bombas);
     
     //Poner las imagenes base
-    //No churula ufo
+/*     //No churula ufo
     function setTablaImagen(fil, col){
         const imageObj = new Image();
         imageObj.src = "blank.gif";
@@ -197,7 +243,7 @@ window.onload = function () {
                 celda.drawImage(imageObj, 0, 0);
             }
         }
-    }
+    } */
 
     //Reinicio del juego
     function reiniciar() {
