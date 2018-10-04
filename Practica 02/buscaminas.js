@@ -122,8 +122,6 @@ window.onload = function () {
     }
 
     function reparteNumeros(fil, col) {
-        //let bombas = 0;
-
         //La i son las filas y la j son las columnas
         for (let i = 0; i < fil; i++) {
             for (let j = 0; j < col; j++) {
@@ -132,51 +130,50 @@ window.onload = function () {
                 filas = document.getElementById(i);
                 celda = document.getElementById(i + "" + j);
 
-                if(filas.id == 0){
-                    console.log(i);
-                    console.log(j);
-                    if(celda.id == 0+""+0){
-                        
-                        let celdaDerecha = document.getElementById(i + "" + (j + 1));
-                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
-                        let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
-    
-                        if (celdaDerecha.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                            console.log("Tengo una mina a la derecha");
-                        }                    
-                        if (celdaAbajo.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                            console.log("Tengo una mina abajo");
-                        }
-                        if (celdaDiagonalDerInf.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                            console.log("TEngo una mina en la diagonal izquierda");
-                        }
-                        celda.innerHTML = contadorMinas; 
-    
-                        console.log("Esquina superior izquierda");
-                    } 
+                    //console.log(i);
+                    //console.log(j);
+                if(celda.id == 0+""+0){
+                    
+                    let celdaDerecha = document.getElementById(i + "" + (j + 1));
+                    let celdaAbajo = document.getElementById((i + 1) + "" + j);
+                    let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
 
-                    if(celda.id == 0+""+col){
-                        let celdaIzquierda = document.getElementById(i + "" + (j - 1));
-                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
-                        let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
-    
-                        if (celdaIzquierda.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                        }
-                        if (celdaAbajo.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                        }
-                        if (celdaDiagonalIzqInf.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                        }
-                        celda.innerHTML = contadorMinas; 
-    
-                        console.log("Esquina superior derecha");  
-                    } 
-                }
+                    if (celdaDerecha.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                        console.log("Tengo una mina a la derecha");
+                    }                    
+                    if (celdaAbajo.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                        console.log("Tengo una mina abajo");
+                    }
+                    if (celdaDiagonalDerInf.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                        console.log("TEngo una mina en la diagonal izquierda");
+                    }
+                    celda.innerHTML = contadorMinas; 
+
+                    console.log("Esquina superior izquierda");
+                } 
+
+                if(celda.id == 0+""+col){
+                    let celdaIzquierda = document.getElementById(i + "" + (j - 1));
+                    let celdaAbajo = document.getElementById((i + 1) + "" + j);
+                    let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
+
+                    if (celdaIzquierda.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                    }
+                    if (celdaAbajo.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                    }
+                    if (celdaDiagonalIzqInf.textContent == "*") {
+                        contadorMinas = contadorMinas + 1;
+                    }
+                    celda.innerHTML = contadorMinas; 
+
+                    console.log("Esquina superior derecha");  
+                } 
+                
 
                 if(filas.id == fil){
                     //Esquina inferior izquierda
