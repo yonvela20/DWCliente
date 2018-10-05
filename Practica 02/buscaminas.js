@@ -63,15 +63,32 @@ window.onload = function () {
             filas.id = i;
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
+                
+                //columas.setAttribute("class", "claseCeldas");
+                //columnas.style.backgroundImage = "url('images/blank.gif')";
 
+                //columnas.setAttribute("class", "claseCeldas");
+                
+                /* att = document.createAttribute("class");
+                att.value = "claseCeldas";
+                
+                columnas.setAttribute(att); */
+                
                 columnas.id = i + "-" + j;
 
+                //filas.className = "claseCeldas";
+                //filas.style.backgroundImage = "url('images/blank.gif')";
+                
+                
+                //FIXME: Poner las imagenes bien 
+                columnas.setAttribute("img", src='images/blank.gif');
+                console.log("paso por las imagenes");
                 filas.appendChild(columnas);
+                
                 //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
                 //Aqui habra que poner la funcion buena pero por el momento va guay 
                 columnas.addEventListener('click', clicks, false);
             }
-
             tblBody.appendChild(filas);
         }
 
@@ -90,17 +107,19 @@ window.onload = function () {
             let rndColumnas = Math.floor((Math.random() * col));
 
             let celdaMina = document.getElementById(rndFilas + "-" + rndColumnas);
-            //let celdaMina = document.getElementById([rndFilas][rndColumnas]);
 
-            let textoCelda = document.getElementById(rndFilas + "-" + rndColumnas).textContent;
-            //let textoCelda = document.getElementById([rndFilas][rndColumnas]).textContent;
+            let textoCelda = document.getElementById(rndFilas + "-" + rndColumnas).style.backgroundImage;
+            
+            //celdaMina.style.backgroundImage = "url('images/bombrevealed.gif')";
 
-            //console.log(textoCelda)                
             if (textoCelda != "*") {
                 celdaMina.innerHTML = "*";
             } else {
                 j--;
-            }
+            } 
+
+            celdaMina.style.backgroundImage = "url('images/bombrevealed.gif')";
+            console.log("He puesto minas");
         }
     }
 
@@ -140,14 +159,14 @@ window.onload = function () {
                     //Casos en los que sea nula la casilla 
                     //Lados
                     if(celdaDerecha == null){
-                        console.log("A la derecha no hay celda");
+                    
                     } else{
                         if (celdaDerecha.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }                        
                     }
                     if(celdaIzquierda == null){
-                        console.log("A la izquierda no hay celda");
+
                     } else {
                         if (celdaIzquierda.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
@@ -156,14 +175,14 @@ window.onload = function () {
                     
                     //Arriba abajo
                     if(celdaAbajo == null){
-                        console.log("Abajo no hay celda");
+                        
                     } else {
                         if (celdaAbajo.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
                     if(celdaArriba == null){
-                        console.log("Arriba no hay celda");
+                        
                     }else {
                         if (celdaArriba.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
@@ -172,14 +191,14 @@ window.onload = function () {
                     
                     //Diagonales derechas 
                     if(celdaDiagonalDerInf == null){
-                        console.log("Abajo a la derecha no hay celda");
+                        
                     } else {
                         if (celdaDiagonalDerInf.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
                     if(celdaDiagonalDerSup == null){
-                        console.log("Arriba a la derecha no hay celda");
+                        
                     } else {
                         if (celdaDiagonalDerSup.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
@@ -188,41 +207,25 @@ window.onload = function () {
                     
                     //Diagonales izquierdas
                     if(celdaDiagonalIzqInf == null){
-                        console.log("Abajo a la izquierda no hay celda");
+                       
                     } else {
                         if (celdaDiagonalIzqInf.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
                     if(celdaDiagonalIzqSup == null){
-                        console.log("Arriba a la izquierda no hay celda");
+                        
                     } else {
                         if (celdaDiagonalIzqSup.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
-                    celda.innerHTML = contadorMinas;         
-
-                } 
+                    //celda.innerHTML = contadorMinas; 
+                    celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
+               } 
             }
         }
     }
-
-    
-    //Poner las imagenes base
-/*     //No churula ufo
-    function setTablaImagen(fil, col){
-        const imageObj = new Image();
-        imageObj.src = "blank.gif";
-
-        for (let i = 0; i < fil; i++) {
-            for (let j = 0; j < col; j++) {
-                celda = document.getElementById(i+""+j);
-    
-                celda.drawImage(imageObj, 0, 0);
-            }
-        }
-    } */
 
     //Reinicio del juego
     function reiniciar() {

@@ -1,11 +1,26 @@
-#divTablero td{ 
-    width: 15px;
-    height: 15px;
-}
-
 #divTablero td{
     background-size: 100%;
     background-color: darkgrey;
-    background-image: url("images/blank.gif");
-    z-index: 0;
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-width: 16px;
+
 }
+
+#divTablero{
+    text-align: center; 
+    font-size: 10px;
+    z-index: 0;
+
+}
+
+.claseCeldas{
+    background-image: url("images/blank.gif");
+    z-index: 9999;
+}
+
+#divTablero image{
+    z-index: 9999;
+}
+
