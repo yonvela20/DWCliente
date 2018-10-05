@@ -67,7 +67,7 @@ window.onload = function () {
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
                 columnas.id = i + "" + j;
-
+                //columnas.id = [i][j];
                 //columnas.setAttribute("id", [i][j]);
                 filas.appendChild(columnas);
                 //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
@@ -122,8 +122,6 @@ window.onload = function () {
     }
 
     function reparteNumeros(fil, col) {
-        //let bombas = 0;
-
         //La i son las filas y la j son las columnas
         for (let i = 0; i < fil; i++) {
             for (let j = 0; j < col; j++) {
@@ -132,101 +130,90 @@ window.onload = function () {
                 filas = document.getElementById(i);
                 celda = document.getElementById(i + "" + j);
 
-                if(filas.id == 0){
-                    console.log(i);
-                    console.log(j);
-                    if(celda.id == 0+""+0){
-                        
-                        let celdaDerecha = document.getElementById(i + "" + (j + 1));
-                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
-                        let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
-    
+                let celdaDerecha = document.getElementById(i + "" + (j + 1));
+                let celdaIzquierda = document.getElementById(i + "" + (j - 1));
+
+                let celdaAbajo = document.getElementById((i + 1) + "" + j);
+                let celdaArriba = document.getElementById((i - 1) + "" + j);
+
+                let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
+                let celdaDiagonalDerSup = document.getElementById((i - 1) + "" + (j + 1));
+
+                let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
+                let celdaDiagonalIzqSup = document.getElementById((i - 1) + "" + (j - 1));
+                
+
+                if(celda.textContent != "*"){
+                    //Casos en los que sea nulla la casilla 
+                    //Lados
+                    if(celdaDerecha == null){
+                        console.log("A la derecha no hay celda");
+                    } else{
                         if (celdaDerecha.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
-                            console.log("Tengo una mina a la derecha");
-                        }                    
-                        if (celdaAbajo.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                            console.log("Tengo una mina abajo");
-                        }
-                        if (celdaDiagonalDerInf.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                            console.log("TEngo una mina en la diagonal izquierda");
-                        }
-                        celda.innerHTML = contadorMinas; 
-    
-                        console.log("Esquina superior izquierda");
-                    } 
-
-                    if(celda.id == 0+""+col){
-                        let celdaIzquierda = document.getElementById(i + "" + (j - 1));
-                        let celdaAbajo = document.getElementById((i + 1) + "" + j);
-                        let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
-    
+                        }                        
+                    }
+                    if(celdaIzquierda == null){
+                        console.log("A la izquierda no hay celda");
+                    } else {
                         if (celdaIzquierda.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
-                        }
+                        } 
+                    }
+                    
+                    //Arriba abajo
+                    if(celdaAbajo == null){
+                        console.log("Abajo no hay celda");
+                    } else {
                         if (celdaAbajo.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
-                        if (celdaDiagonalIzqInf.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                        }
-                        celda.innerHTML = contadorMinas; 
-    
-                        console.log("Esquina superior derecha");  
-                    } 
-                }
-
-                if(filas.id == fil){
-                    //Esquina inferior izquierda
-                    if(celda.id == fil+""+0){
-
-                        let celdaArriba = document.getElementById((i - 1) + "" + j);
-                        let celdaDerecha = document.getElementById(i + "" + (j + 1));
-                        let celdaDiagonalDerSup = document.getElementById((i - 1) + "" + (j + 1));
-
+                    }
+                    if(celdaArriba == null){
+                        console.log("Arriba no hay celda");
+                    }else {
                         if (celdaArriba.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
-                        if (celdaDerecha.textContent == "*") {
+                    }
+                    
+                    //Diagonales derechas 
+                    if(celdaDiagonalDerInf == null){
+                        console.log("Abajo a la derecha no hay celda");
+                    } else {
+                        if (celdaDiagonalDerInf.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
+                    }
+                    if(celdaDiagonalDerSup == null){
+                        console.log("Arriba a la derecha no hay celda");
+                    } else {
                         if (celdaDiagonalDerSup.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
-                        celda.innerHTML = contadorMinas; 
-
-                        console.log("Esquina inferior izquierda");
-                    } 
-                    //Esquina inferior derecha 
-                    if(celda.id == fil+""+col){
-                        let celdaArriba = document.getElementById((i - 1) + "" + j);
-                        let celdaIzquierda = document.getElementById(i + "" + (j - 1));
-                        let celdaDiagonalIzqSup = document.getElementById((i - 1) + "" + (j - 1));
-
-                        if (celdaArriba.textContent == "*") {
+                    }
+                    
+                    //Diagonales izquierdas
+                    if(celdaDiagonalIzqInf == null){
+                        console.log("Abajo a la izquierda no hay celda");
+                    } else {
+                        if (celdaDiagonalIzqInf.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
-                        if (celdaIzquierda.textContent == "*") {
-                            contadorMinas = contadorMinas + 1;
-                        }
+                    }
+                    if(celdaDiagonalIzqSup == null){
+                        console.log("Arriba a la izquierda no hay celda");
+                    } else {
                         if (celdaDiagonalIzqSup.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
                         }
-                        celda.innerHTML = contadorMinas; 
-
-                        console.log("Esquina inferior derecha");
                     }
-                }            
+                    celda.innerHTML = contadorMinas;         
 
-                //celda.innerHTML = contadorMinas; 
-
+                } 
+                //Ponemos en la celda el numero correspondiente
             }
-
-
         }
-
     }
     //console.log(bombas);
     
