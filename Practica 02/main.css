@@ -1,4 +1,11 @@
-#divTablero td{
+#divTablero td{ 
     width: 15px;
     height: 15px;
+}
+
+#divTablero td{
+    background-size: 100%;
+    background-color: darkgrey;
+    background-image: url("blank.gif");
+    z-index: 0;
 }

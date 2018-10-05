@@ -1,8 +1,5 @@
 window.onload = function () {
 
-    //TODO: hacer que las celdas contiguas a las minas tengan su numero correspondiente
-    //TODO: hacer que cada celda con mina tenga su propia variable booleana 
-
     document.getElementById("chkPrincipiante").addEventListener('click', juegoPrincipiante, false);
     document.getElementById("chkIntermedio").addEventListener('click', juegoIntermedio, false);
     document.getElementById("chkExperto").addEventListener('click', juegoExperto, false);
@@ -54,7 +51,7 @@ window.onload = function () {
 
     }
 
-    //Funcion para general tablas 
+    //Funcion para generar tablas 
     function generaTablas(fil, col) {
         const divTablero = document.getElementById("divTablero");
 
@@ -66,9 +63,9 @@ window.onload = function () {
             filas.id = i;
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
-                columnas.id = i + "" + j;
-                //columnas.id = [i][j];
-                //columnas.setAttribute("id", [i][j]);
+
+                columnas.id = i + "-" + j;
+
                 filas.appendChild(columnas);
                 //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
                 //Aqui habra que poner la funcion buena pero por el momento va guay 
@@ -92,10 +89,10 @@ window.onload = function () {
             let rndFilas = Math.floor((Math.random() * fil));
             let rndColumnas = Math.floor((Math.random() * col));
 
-            let celdaMina = document.getElementById(rndFilas + "" + rndColumnas);
+            let celdaMina = document.getElementById(rndFilas + "-" + rndColumnas);
             //let celdaMina = document.getElementById([rndFilas][rndColumnas]);
 
-            let textoCelda = document.getElementById(rndFilas + "" + rndColumnas).textContent;
+            let textoCelda = document.getElementById(rndFilas + "-" + rndColumnas).textContent;
             //let textoCelda = document.getElementById([rndFilas][rndColumnas]).textContent;
 
             //console.log(textoCelda)                
@@ -104,9 +101,7 @@ window.onload = function () {
             } else {
                 j--;
             }
-
         }
-        //console.log(numBombas);
     }
 
     //Funcion comodin para los clicks en celdas 
@@ -116,9 +111,7 @@ window.onload = function () {
             endGame();
         } else{
             console.log("Has clickado agua");
-        }
-        
-
+          }
     }
 
     function reparteNumeros(fil, col) {
@@ -128,23 +121,23 @@ window.onload = function () {
                 let contadorMinas = 0;
                 
                 filas = document.getElementById(i);
-                celda = document.getElementById(i + "" + j);
+                celda = document.getElementById(i + "-" + j);
 
-                let celdaDerecha = document.getElementById(i + "" + (j + 1));
-                let celdaIzquierda = document.getElementById(i + "" + (j - 1));
+                let celdaDerecha = document.getElementById(i + "-" + (j + 1));
+                let celdaIzquierda = document.getElementById(i + "-" + (j - 1));
 
-                let celdaAbajo = document.getElementById((i + 1) + "" + j);
-                let celdaArriba = document.getElementById((i - 1) + "" + j);
+                let celdaAbajo = document.getElementById((i + 1) + "-" + j);
+                let celdaArriba = document.getElementById((i - 1) + "-" + j);
 
-                let celdaDiagonalDerInf = document.getElementById((i + 1) + "" + (j + 1));
-                let celdaDiagonalDerSup = document.getElementById((i - 1) + "" + (j + 1));
+                let celdaDiagonalDerInf = document.getElementById((i + 1) + "-" + (j + 1));
+                let celdaDiagonalDerSup = document.getElementById((i - 1) + "-" + (j + 1));
 
-                let celdaDiagonalIzqInf = document.getElementById((i + 1) + "" + (j - 1));
-                let celdaDiagonalIzqSup = document.getElementById((i - 1) + "" + (j - 1));
+                let celdaDiagonalIzqInf = document.getElementById((i + 1) + "-" + (j - 1));
+                let celdaDiagonalIzqSup = document.getElementById((i - 1) + "-" + (j - 1));
                 
 
                 if(celda.textContent != "*"){
-                    //Casos en los que sea nulla la casilla 
+                    //Casos en los que sea nula la casilla 
                     //Lados
                     if(celdaDerecha == null){
                         console.log("A la derecha no hay celda");
@@ -211,11 +204,10 @@ window.onload = function () {
                     celda.innerHTML = contadorMinas;         
 
                 } 
-                //Ponemos en la celda el numero correspondiente
             }
         }
     }
-    //console.log(bombas);
+
     
     //Poner las imagenes base
 /*     //No churula ufo
