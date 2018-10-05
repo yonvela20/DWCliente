@@ -6,6 +6,6 @@
 #divTablero td{
     background-size: 100%;
     background-color: darkgrey;
-    background-image: url("blank.gif");
+    background-image: url("images/blank.gif");
     z-index: 0;
 }
