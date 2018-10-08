@@ -1,5 +1,10 @@
 window.onload = function () {
 
+    /**
+     * FIXME: Hacer que me obtenga el valor de la función reparteNumeros en la funcion del click 
+     * para así poder ponerle la imagen correspondiente a su numero 
+     */
+
     document.getElementById("chkPrincipiante").addEventListener('click', juegoPrincipiante, false);
     document.getElementById("chkIntermedio").addEventListener('click', juegoIntermedio, false);
     document.getElementById("chkExperto").addEventListener('click', juegoExperto, false);
@@ -64,29 +69,13 @@ window.onload = function () {
             for (let j = 0; j < col; j++) {
                 let columnas = document.createElement("td");
                 
-                //columas.setAttribute("class", "claseCeldas");
-                //columnas.style.backgroundImage = "url('images/blank.gif')";
-
-                //columnas.setAttribute("class", "claseCeldas");
-                
-                /* att = document.createAttribute("class");
-                att.value = "claseCeldas";
-                
-                columnas.setAttribute(att); */
-                
                 columnas.id = i + "-" + j;
-
-                //filas.className = "claseCeldas";
-                //filas.style.backgroundImage = "url('images/blank.gif')";
                 
-                
-                //FIXME: Poner las imagenes bien 
-                columnas.setAttribute("img", src='images/blank.gif');
-                console.log("paso por las imagenes");
                 filas.appendChild(columnas);
                 
-                //LOS CLICKS EN CELDAS FUNCIONAN AAAAAAAAAAAAAAAAAA
-                //Aqui habra que poner la funcion buena pero por el momento va guay 
+                columnas.style.backgroundImage = "url('images/blank.gif')";
+
+                //Clicks en celdas
                 columnas.addEventListener('click', clicks, false);
             }
             tblBody.appendChild(filas);
@@ -100,7 +89,7 @@ window.onload = function () {
 
     //Funcion para generar bombas 
     function generaBombas(numBombas, fil, col) {
-        console.log(numBombas);
+        //console.log(numBombas);
         for (let j = 0; j < numBombas; j++) {
 
             let rndFilas = Math.floor((Math.random() * fil));
@@ -109,28 +98,13 @@ window.onload = function () {
             let celdaMina = document.getElementById(rndFilas + "-" + rndColumnas);
 
             let textoCelda = document.getElementById(rndFilas + "-" + rndColumnas).style.backgroundImage;
-            
-            //celdaMina.style.backgroundImage = "url('images/bombrevealed.gif')";
 
             if (textoCelda != "*") {
                 celdaMina.innerHTML = "*";
             } else {
                 j--;
             } 
-
-            celdaMina.style.backgroundImage = "url('images/bombrevealed.gif')";
-            console.log("He puesto minas");
         }
-    }
-
-    //Funcion comodin para los clicks en celdas 
-    function clicks() {
-        if(event.target.innerHTML == "*"){
-            console.log("Has clickado una bomba");
-            endGame();
-        } else{
-            console.log("Has clickado agua");
-          }
     }
 
     function reparteNumeros(fil, col) {
@@ -139,8 +113,8 @@ window.onload = function () {
             for (let j = 0; j < col; j++) {
                 let contadorMinas = 0;
                 
-                filas = document.getElementById(i);
-                celda = document.getElementById(i + "-" + j);
+                //filas = document.getElementById(i);
+                let celda = document.getElementById(i + "-" + j);
 
                 let celdaDerecha = document.getElementById(i + "-" + (j + 1));
                 let celdaIzquierda = document.getElementById(i + "-" + (j - 1));
@@ -154,7 +128,6 @@ window.onload = function () {
                 let celdaDiagonalIzqInf = document.getElementById((i + 1) + "-" + (j - 1));
                 let celdaDiagonalIzqSup = document.getElementById((i - 1) + "-" + (j - 1));
                 
-
                 if(celda.textContent != "*"){
                     //Casos en los que sea nula la casilla 
                     //Lados
@@ -166,7 +139,7 @@ window.onload = function () {
                         }                        
                     }
                     if(celdaIzquierda == null){
-
+        
                     } else {
                         if (celdaIzquierda.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
@@ -207,7 +180,7 @@ window.onload = function () {
                     
                     //Diagonales izquierdas
                     if(celdaDiagonalIzqInf == null){
-                       
+                        
                     } else {
                         if (celdaDiagonalIzqInf.textContent == "*") {
                             contadorMinas = contadorMinas + 1;
@@ -220,12 +193,34 @@ window.onload = function () {
                             contadorMinas = contadorMinas + 1;
                         }
                     }
-                    //celda.innerHTML = contadorMinas; 
-                    celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
-               } 
+
+/*                     function obtenMinas(){
+                        return contadorMinas;
+                    } */
+                    //celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
+                }   
             }
         }
     }
+
+    //Funcion comodin para los clicks en celdas 
+    function clicks() {
+        const celdaClick = document.getElementById(this.id);
+
+        if(event.target.innerHTML == "*"){
+            //console.log("Has clickado una bomba");
+            celdaClick.style.backgroundImage = "url('images/bombrevealed.gif')";
+            //endGame();
+        } else {
+            //let num = reparteNumeros.contadorMinas;
+            let numMinas = obtenMinas;
+            
+            console.log(numMinas);
+
+            //celdaClick.style.backgroundImage =  "url('images/open"+ reparteNumeros.contadorMinas +".gif')";
+        }
+    }
+
 
     //Reinicio del juego
     function reiniciar() {
@@ -236,7 +231,109 @@ window.onload = function () {
     function endGame(){
         alert("Has perdido :(")
         reiniciar();
-    }
+    }    
 }
 
 
+
+/*---------------------FUNCION DE LOS NUMERO REFACTORIZADA?????--------------------*/
+/*
+    function reparteNumeros(fil, col) {
+        //La i son las filas y la j son las columnas
+        for (let i = 0; i < fil; i++) {
+            for (let j = 0; j < col; j++) {
+                let contadorMinas = 0;
+                
+                //filas = document.getElementById(i);
+                let celda = document.getElementById(i + "-" + j);
+
+                let celdaDerecha = document.getElementById(i + "-" + (j + 1));
+                let celdaIzquierda = document.getElementById(i + "-" + (j - 1));
+
+                let celdaAbajo = document.getElementById((i + 1) + "-" + j);
+                let celdaArriba = document.getElementById((i - 1) + "-" + j);
+
+                let celdaDiagonalDerInf = document.getElementById((i + 1) + "-" + (j + 1));
+                let celdaDiagonalDerSup = document.getElementById((i - 1) + "-" + (j + 1));
+
+                let celdaDiagonalIzqInf = document.getElementById((i + 1) + "-" + (j - 1));
+                let celdaDiagonalIzqSup = document.getElementById((i - 1) + "-" + (j - 1));
+                
+                contarNumeros(contadorMinas, celda, celdaAbajo, celdaArriba, celdaDerecha, 
+                    celdaIzquierda, celdaDiagonalDerInf, celdaDiagonalDerSup, celdaDiagonalIzqInf, celdaDiagonalIzqSup);
+            }
+        }
+    }
+
+    function contarNumeros(contadorMinas, celda, celdaAbajo, celdaArriba, celdaDerecha, 
+        celdaIzquierda, celdaDiagonalDerInf, celdaDiagonalDerSup, celdaDiagonalIzqInf, celdaDiagonalIzqSup){
+
+        if(celda.textContent != "*"){
+            //Casos en los que sea nula la casilla 
+            //Lados
+            if(celdaDerecha == null){
+            
+            } else{
+                if (celdaDerecha.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }                        
+            }
+            if(celdaIzquierda == null){
+
+            } else {
+                if (celdaIzquierda.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                } 
+            }
+            
+            //Arriba abajo
+            if(celdaAbajo == null){
+                
+            } else {
+                if (celdaAbajo.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            if(celdaArriba == null){
+                
+            }else {
+                if (celdaArriba.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            
+            //Diagonales derechas 
+            if(celdaDiagonalDerInf == null){
+                
+            } else {
+                if (celdaDiagonalDerInf.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            if(celdaDiagonalDerSup == null){
+                
+            } else {
+                if (celdaDiagonalDerSup.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            
+            //Diagonales izquierdas
+            if(celdaDiagonalIzqInf == null){
+                
+            } else {
+                if (celdaDiagonalIzqInf.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            if(celdaDiagonalIzqSup == null){
+                
+            } else {
+                if (celdaDiagonalIzqSup.textContent == "*") {
+                    contadorMinas = contadorMinas + 1;
+                }
+            }
+            //celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
+        }   
+    }
+*/
