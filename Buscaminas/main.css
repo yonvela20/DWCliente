@@ -1,0 +1,18 @@
+#divTablero td{
+    background-size: 100%;
+    background-color: darkgrey;
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-width: 16px;
+}
+
+#divTablero{
+    text-align: center; 
+    font-size: 10px;
+    z-index: 0;
+}
+
+body{
+    cursor: default;
+}
