@@ -194,10 +194,10 @@ window.onload = function () {
                         }
                     }
 
-/*                     function obtenMinas(){
+                    /*function obtenMinas(){
                         return contadorMinas;
                     } */
-                    //celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
+                    celda.style.backgroundImage = "url('images/open"+contadorMinas+".gif')";
                 }   
             }
         }
