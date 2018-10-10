@@ -67,7 +67,7 @@ class Tablero{
 
             let celda = document.getElementById(rndFilas + "-" + rndColumnas);
                         
-            if (celda.bomba != true) {
+            if (!celda.bomba) {
                 celda.innerHTML = "*";
                 celda.bomba = true;
 
@@ -82,9 +82,7 @@ class Tablero{
         //La i son las filas y la j son las columnas
         for (let i = 0; i < this.fil; i++) {
             for (let j = 0; j < this.col; j++) {
-                //let contadorMinas = 0;
                 let numeroContiguo = 0;
-                //filas = document.getElementById(i);
                 let celda = document.getElementById(i + "-" + j);
 
                 let celdaDerecha = document.getElementById(i + "-" + (j + 1));
@@ -99,7 +97,7 @@ class Tablero{
                 let celdaDiagonalIzqInf = document.getElementById((i + 1) + "-" + (j - 1));
                 let celdaDiagonalIzqSup = document.getElementById((i - 1) + "-" + (j - 1));
                 
-                if(celda.bomba != true){
+                if(!celda.bomba){
                     //Casos en los que sea nula la casilla 
                     //Lados
                     if(celdaDerecha == null){
@@ -166,16 +164,36 @@ class Tablero{
                     }
 
                     celda.numeroContiguo = numeroContiguo;
-                    //celda.innerHTML = numeroContiguo;
-                    //console.log(celda.id, celda.numeroContiguo);
                 }   
             }
         }
     }
+    
+    /**
+     * abreCero() llama a abreMar() cada vez que encuentra una 
+     * celda con un cero alrededor de la celda clickada.
+     */
+    abreCero(){
+        let celdaId = event.target.id;
+        let celda = document.getElementById(celdaId);
 
-    abreMar(){
-        
-    }
+        if(celda.numeroContiguo == 0){
+            
+            console.log("la celda esta vacia");
+        }
+        abreMar();
+    } //cierra la funcion abreCero();
+}
+
+/**
+ * Abre mar es una funcion que utiliza aberCero() que pone el fondo 
+ * de la celda en blanco 
+ */
+function abreMar(){
+    //let celda = this.celda;
+    //console.log(celda.id);
+    console.log("funcion abreMar() dentro de abreCero()");
+    //celda.style.backgroundImage = "url('images/open0.gif')";
 }
 
 //Funciones fuera de la clase tablero 
@@ -188,8 +206,6 @@ function juegoPrincipiante() {
 
     document.getElementById("botonReiniciar").style.display = "block";
     document.getElementById("divChecks").style.display = "none";
-    //generaBombas(numBombas, fil, col);
-    //reparteNumeros(fil, col);
     //setTablaImagen(fil, col);
 }
 
@@ -202,7 +218,6 @@ function juegoIntermedio() {
 
     document.getElementById("botonReiniciar").style.display = "block";
     document.getElementById("divChecks").style.display = "none";
-    //generaBombas(numBombas, fil, col);
     //reparteNumeros(fil, col);
 }
 
@@ -215,8 +230,6 @@ function juegoExperto() {
 
     document.getElementById("botonReiniciar").style.display = "block";
     document.getElementById("divChecks").style.display = "none";
-
-    //generaBombas(numBombas, fil, col);
     //reparteNumeros(fil, col);
 }
 
@@ -230,8 +243,9 @@ function clicks(){
         //endGame();
     } else if(celdaClick.numeroContiguo == 0){
         //funcion que abra el mar
-        //abreMar();
-        celdaClick.style.backgroundImage =  "url('images/open"+ celdaClick.numeroContiguo +".gif')";
+        //celdaClick.style.backgroundImage =  "url('images/open"+ celdaClick.numeroContiguo +".gif')";
+        //console.log("antes de la funcion mar");
+        juego.abreCero();
     } 
     else {
         celdaClick.style.backgroundImage =  "url('images/open"+ celdaClick.numeroContiguo +".gif')";
@@ -249,7 +263,6 @@ function reiniciar() {
     window.location.reload();
 }
 
-//Funcion que abre el mar al clickar en celda vacia
-function abreMar(){
+/* function abreMar(){
     return false;
-}
+} */
