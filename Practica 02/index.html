@@ -2,27 +2,23 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Buscaminas por Ion Vela </title>
+    <title>Sumar y restar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./main.css" />
-    <script type="text/javascript" src="./buscaminas.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/css/main.css" />
+    <script src="js/build/todo.js"></script>
 </head>
 <body>
-    <h1>Buscaminas por Ion Vela</h1>
-    <button id="botonReiniciar"> Reinicio </button>
-    <div id="divChecks">
-        <input type="checkbox" id="chkPrincipiante"> <b>Nivel principiante</b> 
-        <input type="checkbox" id="chkIntermedio"> <b>Nivel intermedio </b>
-        <input type="checkbox" id="chkExperto"> <b>Nivel experto </b>
-
-        <!--<input type="checkbox" id="chkPrueba"> prueba-->
-    </div>
+    <form>
+        Primer numero: <input id="primerDigito" type="number">
+        <br>
+        <br>
+        Segundo numero: <input id="segundoDigito" type="number">
+    </form>
+    
+    <button id="restar">Restar</button>
+    <button id="sumar">Sumar</button>
     <br>
-    <br>
-    <div id="divTablero" class="tablero"></div>
-
-    <!--<div id="divTableroPrueba" class="pruebas"></div> -->
+    <h3 id="resultado"></h3>
     
 </body>
 </html>
