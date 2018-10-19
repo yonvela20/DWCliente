@@ -1,9 +1,4 @@
 class Fecha{
-    /* constructor(mes, dia, año){
-        this.mes=mes;
-        this.dia=dia;
-        this.año=año;
-    } */
 
     static retornarMes(mes){
         if(this.mes == 1){
