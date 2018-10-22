@@ -62,8 +62,9 @@ class Tablero{
     generaBombas(){
         for (let j = 0; j < this.numBombas; j++) {
 
-            let rndFilas = Math.floor((Math.random() * this.fil));
-            let rndColumnas = Math.floor((Math.random() * this.col));
+            //Aleatorios creados con metodos de lodash
+            let rndFilas = _.random(0, (this.fil-1));
+            let rndColumnas = _.random(0, (this.col-1));
 
             let celda = document.getElementById(rndFilas + "-" + rndColumnas);
                         
