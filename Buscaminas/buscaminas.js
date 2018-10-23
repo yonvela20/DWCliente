@@ -15,7 +15,25 @@ class Celda{
         this.bomba = false;
         this.bandera = false;
         this.numeroContiguo = 0;
+        this._coorX;
+        this._coorY;
     }
+
+/*     set CoorX(cX){
+        this.coorX = cX;
+    }
+
+    set coorY(cY){
+        this.coorY = cY;
+    } */
+
+     get coorX(){
+        return this._coorX;
+    }
+
+    get coorY(){
+        return this._coorY;
+    } 
 }
 
 //Clase tablero
@@ -42,12 +60,17 @@ class Tablero{
 
                 this.celda = new Celda();
                 
+                celda.coorX = i;
+                celda.coorY = j;
+
                 filas.appendChild(celda);
                 
                 celda.style.backgroundImage = "url('images/blank.gif')";
 
                 //Clicks en celdas
                 celda.addEventListener('click', clicks, false);
+                
+                //console.log(celda.coorX, celda.coorY);
             }
             tblBody.appendChild(filas);
         }
@@ -174,15 +197,100 @@ class Tablero{
      * abreCero() llama a abreMar() cada vez que encuentra una 
      * celda con un cero alrededor de la celda clickada.
      */
-    abreCero(){
+    abreCero(celda){
         let celdaId = event.target.id;
-        let celda = document.getElementById(celdaId);
+        celda = document.getElementById(celdaId);
 
-        if(celda.numeroContiguo == 0){
+        //console.log(celda.coorX, celda.coorY);
+
+        let celdaDerecha = document.getElementById(celda.coorX + "-" + (celda.coorY + 1));
+        let celdaIzquierda = document.getElementById(celda.coorX + "-" + (celda.coorY - 1));
+
+        let celdaAbajo = document.getElementById((celda.coorX + 1) + "-" + celda.coorY);
+        let celdaArriba = document.getElementById((celda.coorX - 1) + "-" + celda.coorY);
+
+        let celdaDiagonalDerInf = document.getElementById((celda.coorX + 1) + "-" + (celda.coorY + 1));
+        let celdaDiagonalDerSup = document.getElementById((celda.coorX - 1) + "-" + (celda.coorY + 1));
+
+        let celdaDiagonalIzqInf = document.getElementById((celda.coorX + 1) + "-" + (celda.coorY - 1));
+        let celdaDiagonalIzqSup = document.getElementById((celda.coorX - 1) + "-" + (celda.coorY - 1));
+
+        //console.log(celdaDerecha.coorX, celdaDerecha.coorY);
+
+        if(!celda.bomba && celda.numeroContiguo == 0){
+            if(celda.numeroContiguo == 0){
+                
+                celda.style.backgroundImage = "url('blank.gif')";
+            }
+
+            if(celdaDerecha == null){
+                    
+            } else{
+                if (!celdaDerecha.bomba) {
+                    //celdaDerecha.style.backgroundImage = "url('blank.gif')";
+                    celdaDerecha.style.backgroundImage =  "url('images/open"+ celdaDerecha.numeroContiguo +".gif')";
+                    this.abreCero(celdaDerecha);
+                }                        
+            }
+            if(celdaIzquierda == null){
+
+            } else {
+                if (!celdaIzquierda.bomba) {
+                    celdaIzquierda.style.backgroundImage =  "url('images/open"+ celdaIzquierda.numeroContiguo +".gif')";                    
+                    //this.abreCero(celdaIzquierda);   
+                } 
+            }
             
-            console.log("la celda esta vacia");
+            //Arriba abajo
+            if(celdaAbajo == null){
+                
+            } else {
+                if (!celdaAbajo.bomba) {
+                    celdaAbajo.style.backgroundImage =  "url('images/open"+ celdaAbajo.numeroContiguo +".gif')";
+                }
+            }
+            if(celdaArriba == null){
+                
+            }else {
+                if (!celdaArriba.bomba) {
+                    celdaArriba.style.backgroundImage =  "url('images/open"+ celdaArriba.numeroContiguo +".gif')";
+                }
+            }
+            
+            //Diagonales derechas 
+            if(celdaDiagonalDerInf == null){
+                
+            } else {
+                if (!celdaDiagonalDerInf.bomba) {
+                    celdaDiagonalDerInf.style.backgroundImage =  "url('images/open"+ celdaDiagonalDerInf.numeroContiguo +".gif')";
+                }
+            }
+            if(celdaDiagonalDerSup == null){
+                
+            } else {
+                if (!celdaDiagonalDerSup.bomba) {
+                    celdaDiagonalDerSup.style.backgroundImage =  "url('images/open"+ celdaDiagonalDerSup.numeroContiguo +".gif')";
+                }
+            }
+            
+            //Diagonales izquierdas
+            if(celdaDiagonalIzqInf == null){
+                
+            } else {
+                if (!celdaDiagonalIzqInf.bomba) {
+                    celdaDiagonalIzqInf.style.backgroundImage =  "url('images/open"+ celdaDiagonalIzqInf.numeroContiguo +".gif')";
+                }
+            }
+            if(celdaDiagonalIzqSup == null){
+                
+            } else {
+                if (!celdaDiagonalIzqSup.bomba) {
+                    celdaDiagonalIzqSup.style.backgroundImage =  "url('images/open"+ celdaDiagonalIzqSup.numeroContiguo +".gif')";
+                }
+            }
+
+            
         }
-        abreMar();
     } //cierra la funcion abreCero();
 }
 
@@ -190,12 +298,7 @@ class Tablero{
  * Abre mar es una funcion que utiliza aberCero() que pone el fondo 
  * de la celda en blanco 
  */
-function abreMar(){
-    //let celda = this.celda;
-    //console.log(celda.id);
-    console.log("funcion abreMar() dentro de abreCero()");
-    //celda.style.backgroundImage = "url('images/open0.gif')";
-}
+
 
 //Funciones fuera de la clase tablero 
 //Tabla de nivel principiante 8x8
@@ -241,7 +344,7 @@ function clicks(){
     if(event.target.bomba){
         //console.log("Has clickado una bomba");
         celdaClick.style.backgroundImage = "url('images/bombdeath.gif')";
-        //endGame();
+        endGame();
     } else if(celdaClick.numeroContiguo == 0){
         //funcion que abra el mar
         //celdaClick.style.backgroundImage =  "url('images/open"+ celdaClick.numeroContiguo +".gif')";
