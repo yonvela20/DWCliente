@@ -1,0 +1,80 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: burlywood;
+    /*padding-left: 30;*/
+}
+
+/*Antes de empezar a jugar*/
+#tituloJuego{
+    background-color: #d2a679;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 150px; 
+}
+
+#reglasJuego{
+    margin-left: 150px;
+    background-color:whitesmoke;
+    width: 350px;
+    margin-left: 150px;
+    text-align: justify;
+    border-style: solid;
+    border-radius: 10px;   
+}
+
+#reglasJuego{
+    margin-left: 100px;
+    padding-left: 25px;
+}
+
+
+#botonJugar{
+    margin-top: 20px;
+    margin-left: 100px;
+    background-color: white;
+    color: black;
+    border: 2px solid #361e05;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/*Una vez empezado el juego*/
+
+#inputLetras{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: 150px;
+    background-color:whitesmoke;
+    width: 150px;
+    margin-left: 150px;
+    text-align: justify;
+    border-style: solid;
+    border-radius: 5px;   
+    padding: 20px;
+}
+
+#botonComprobar{
+    margin-top: 20px;
+    margin-left: 150px;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#contenedorLetras{
+    margin-left: 150px;
+    width: 65px;
+    margin-left: 150px;
+    text-align: justify;
+   
+        
+}
+
+#idAhorcado{
+    padding-bottom: 50px;
+    padding-left: 20spx;
+    font-size: 20px;
+    font-weight: bold;
+}
