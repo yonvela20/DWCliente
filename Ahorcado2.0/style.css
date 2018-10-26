@@ -68,8 +68,13 @@ body{
     width: 65px;
     margin-left: 150px;
     text-align: justify;
-   
-        
+}
+
+#contenedorAhorcado{
+    margin-left: 150px;
+    width: 65px;
+    margin-left: 150px;
+    text-align: justify;
 }
 
 #idAhorcado{
