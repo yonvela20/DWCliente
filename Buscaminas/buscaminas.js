@@ -19,14 +19,6 @@ class Celda{
         this._coorY;
     }
 
-/*     set CoorX(cX){
-        this.coorX = cX;
-    }
-
-    set coorY(cY){
-        this.coorY = cY;
-    } */
-
      get coorX(){
         return this._coorX;
     }
