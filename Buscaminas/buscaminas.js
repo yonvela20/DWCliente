@@ -212,7 +212,7 @@ class Tablero{
         if(!celda.bomba && celda.numeroContiguo == 0){
             if(celda.numeroContiguo == 0){
                 
-                celda.style.backgroundImage = "url('blank.gif')";
+                celda.style.backgroundImage = "url('images/open"+ celda.numeroContiguo +".gif')";
             }
 
             if(celdaDerecha == null){
