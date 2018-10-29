@@ -3,10 +3,10 @@ window.onload = function () {
     document.getElementById("botonComprobar").addEventListener('click', comprobarLetras, false);
     document.getElementById("reinicio").addEventListener('click', reinicio, false);
     
-    //Evita que pongas caracteres en el input (de stackOverflow)
+    //Evita que pongas caracteres en el input con expresiones regulares 
     document.getElementById("introducirLetras").addEventListener("keyup", function () {
-        if (!this.value.match(/[0-9]/)) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+        if (!this.value.match(/[a-zA-Z]/)) {
+            this.value = this.value.replace(/[^a-zA-Z]+/g, '');
         }
     });
 
