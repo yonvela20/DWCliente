@@ -2,6 +2,13 @@ window.onload = function () {
     document.getElementById("botonJugar").addEventListener('click', jugar, false);
     document.getElementById("botonComprobar").addEventListener('click', comprobarLetras, false);
     document.getElementById("reinicio").addEventListener('click', reinicio, false);
+    
+    //Evita que pongas caracteres en el input (de stackOverflow)
+    document.getElementById("introducirLetras").addEventListener("keyup", function () {
+        if (!this.value.match(/[0-9]/)) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
 
     //Hacemos que el input no se vea ya que teoricamente aun no hemos empezado a jugar
     document.getElementById("inputLetras").style.display = "none";
@@ -12,8 +19,6 @@ window.onload = function () {
 
     //Funcion con enter
     const input = document.getElementById("introducirLetras");
-
-    console.log("pichurra");
 
     input.addEventListener("keyup", function (event) {
         event.preventDefault();
@@ -37,6 +42,7 @@ p = arrayPalabras[i];
 palabra = p.split("");
 
 const ahorcado = ["A", "H", "O", "R", "C", "A", "D", "O"];
+//const simbolos = ["","","","","","","","","","","","","","","","",""]; 
 
 let numAciertos = 0;
 let numErrores = 0;
