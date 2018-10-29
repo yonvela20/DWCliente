@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function () {
     document.getElementById("botonJugar").addEventListener('click', jugar, false);
     document.getElementById("botonComprobar").addEventListener('click', comprobarLetras, false);
 
@@ -6,36 +6,49 @@ window.onload = function(){
     document.getElementById("inputLetras").style.display = "none";
     document.getElementById("contenedorLetras").style.display = "none";
     document.getElementById("botonComprobar").style.display = "none";
+
+    //Funcion con enter
+    const input = document.getElementById("introducirLetras");
+
+    input.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        //13 codigo de la tecla enter
+        if (event.keyCode === 13) {
+            //Ejecutamos el click del boton Comprobar
+            document.getElementById("botonComprobar").click();
+        }
+    });
 }
 
 let letrasUsadas = [""];
 let palabra = "";
-let arrayPalabras = ["ahorcado","jazz","recta","curva","matematicas","pincho","hola"];
+let arrayPalabras = ["ahorcado", "jazz", "recta", "curva", "matematicas", "pincho", "hola"];
 
-let i = _.random(0, arrayPalabras.length-1);
+//random con lodash
+let i = _.random(0, arrayPalabras.length - 1);
 p = arrayPalabras[i];
 
 palabra = p.split("");
 
-const ahorcado =  ["A", "H", "O", "R", "C", "A", "D", "O"];
+const ahorcado = ["A", "H", "O", "R", "C", "A", "D", "O"];
 
 let numAciertos = 0;
 let numErrores = 0;
 
-class Tabla{
-    constructor(len){
+class Tabla {
+    constructor(len) {
         this.len = len;
     }
 
-    crearTabla(){
+    crearTabla() {
         const contenedor = document.getElementById("contenedorLetras");
         let tabla = document.createElement("table");
         let tblBody = document.createElement("tbody");
-        for(let i = 0; i < 1; i++){
+        for (let i = 0; i < 1; i++) {
             let filas = document.createElement("tr");
-            for(let j = 0; j < this.len; j++){
+            for (let j = 0; j < this.len; j++) {
                 let celda = document.createElement("td");
-                celda.id = "celdaAcierto"+j;
+                celda.id = "celdaAcierto" + j;
                 celda.innerHTML = "_ ";
                 filas.appendChild(celda);
             }
@@ -46,42 +59,42 @@ class Tabla{
         }
     }
 
-    crearTablaAhorcado(){
+    crearTablaAhorcado() {
         const contenedor = document.getElementById("contenedorAhorcado");
         let tabla = document.createElement("table");
         let tblBody = document.createElement("tbody");
 
-        for(let i = 0; i < 1; i++){
+        for (let i = 0; i < 1; i++) {
             let filas = document.createElement("tr");
-            for(let j = 0; j < 8; j++){
+            for (let j = 0; j < 8; j++) {
                 let celdas = document.createElement("td");
-                celdas.id = "ahorcado"+j;
+                celdas.id = "ahorcado" + j;
                 //celdas.innerHTML = "*";
 
                 filas.appendChild(celdas);
             }
             tabla.appendChild(filas);
             tblBody.appendChild(tabla);
-            
+
             contenedor.appendChild(tblBody);
         }
-    }    
+    }
 }
 
-class Juego{
-    constructor(palabra){
+class Juego {
+    constructor(palabra) {
         this._palabra = palabra;
     }
 
-    set palabra(pal){
+    set palabra(pal) {
         this.palabra = pal;
     }
 
-    get palabra(){
+    get palabra() {
         return this._palabra;
     }
 
-    letraIntroducida(){
+    letraIntroducida() {
         let letraInput = document.getElementById("introducirLetras").value;
         let encontrada = false;
 
@@ -89,81 +102,83 @@ class Juego{
             alert("Debes introducir una letra");
         }
         */
-        for(let i = 0; i < letrasUsadas.length; i++){
-            if(letraInput.toLowerCase() == letrasUsadas[i].toLowerCase()){
-                encontrada = true;                
-            } 
+        for (let i = 0; i < letrasUsadas.length; i++) {
+            if (letraInput.toLowerCase() == letrasUsadas[i].toLowerCase()) {
+                encontrada = true;
+            }
         }
 
-        if(encontrada){
+        if (encontrada) {
             alert("Ya has introducido esa letra antes");
-        }else{
+        } else {
             letrasUsadas.push(letraInput);
             encontrada = false;
 
             //banderita para el bucle de mas adelante
             let existe = false;
 
-            for(let j = 0; j < palabra.length; j++){
-                if(letraInput.toLowerCase() == palabra[j].toLowerCase()){
+            for (let j = 0; j < palabra.length; j++) {
+                if (letraInput.toLowerCase() == palabra[j].toLowerCase()) {
                     existe = true;
 
                     numAciertos++;
 
-                    for(let z = 0; z < palabra.length; z++){
+                    for (let z = 0; z < palabra.length; z++) {
                         //En el caso que el indice de la palabra escogida por el programa coincida con la letra introducida...
-                        if(palabra[z] == letraInput){
+                        if (palabra[z] == letraInput) {
                             //Cogemos todas las rayitas 
-                            let celdaAcierto = document.getElementById("celdaAcierto"+z);
+                            let celdaAcierto = document.getElementById("celdaAcierto" + z);
                             celdaAcierto.innerHTML = palabra[z];
                         }
                     }
                 }
             }
 
-            if(!existe){
+            if (!existe) {
                 numErrores++;
 
                 let errores = document.getElementById("pErrores");
-                errores.innerHTML += letraInput+", ";
-                
-                let celdaAhorcado = document.getElementById("ahorcado"+(numErrores-1));
+                errores.innerHTML += letraInput + ", ";
 
-                celdaAhorcado.innerHTML = ahorcado[numErrores-1];
+                let celdaAhorcado = document.getElementById("ahorcado" + (numErrores - 1));
 
-                if(numErrores == ahorcado.length){
+                celdaAhorcado.innerHTML = ahorcado[numErrores - 1];
+
+                if (numErrores == ahorcado.length) {
                     document.getElementById("final").innerHTML = "Has perdido :(";
                 }
             }
 
-            if(numAciertos == palabra.length){
+            if (numAciertos == palabra.length) {
                 document.getElementById("final").innerHTML = "HAS GANADO!";
             }
         }
     }
 }
 
-function jugar(){
+function jugar() {
     //Ocultamos el boton de jugar y las regalas y mostramos todo lo demas para continuar jugando
     document.getElementById("botonJugar").style.display = "none";
     document.getElementById("reglasJuego").style.display = "none";
-    
+
     document.getElementById("inputLetras").style.display = "block";
     document.getElementById("contenedorLetras").style.display = "block";
     document.getElementById("botonComprobar").style.display = "block";
 
     juego = new Juego(palabra);
     tabla = new Tabla(palabra.length);
-    
+
     tabla.crearTabla();
     tabla.crearTablaAhorcado();
 
     console.log(palabra);
 }
 
-function comprobarLetras(){
+function comprobarLetras() {
     juego.letraIntroducida();
     let input = document.getElementById("introducirLetras");
     input.value = "";
     input.focus();
 }
+
+
