@@ -1,3 +1,6 @@
+/* import * as juego from "./juego";
+import * as tabla from "./tabla"; */
+
 window.onload = function () {
     document.getElementById("botonJugar").addEventListener('click', jugar, false);
     document.getElementById("botonComprobar").addEventListener('click', comprobarLetras, false);
@@ -110,10 +113,6 @@ class Juego {
         let letraInput = document.getElementById("introducirLetras").value;
         let encontrada = false;
 
-        /* if(letraInput.charAt(0) == " " || letraInput == ""){
-            alert("Debes introducir una letra");
-        }
-        */
         for (let i = 0; i < letrasUsadas.length; i++) {
             if (letraInput.toLowerCase() == letrasUsadas[i].toLowerCase()) {
                 encontrada = true;
@@ -175,8 +174,7 @@ class Juego {
             }
         }
     }
-}
-
+} 
 function jugar() {
     //Ocultamos el boton de jugar y las regalas y mostramos todo lo demas para continuar jugando
     document.getElementById("botonJugar").style.display = "none";
