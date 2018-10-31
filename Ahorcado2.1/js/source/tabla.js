@@ -1,5 +1,3 @@
-//export * from "js/source/tabla";
-
 export default class Tabla {
     constructor(len) {
         this.len = len;

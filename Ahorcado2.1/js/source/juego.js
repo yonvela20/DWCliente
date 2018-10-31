@@ -1,5 +1,3 @@
-//export * from "js/source/juego";
-
 export default class Juego {
     constructor(palabra) {
         this._palabra = palabra;
@@ -14,13 +12,25 @@ export default class Juego {
     }
 
     letraIntroducida() {
-        let letraInput = document.getElementById("introducirLetras").value;
-        let encontrada = false;
+/*         let letrasUsadas = [""];
+        let palabra = "";
+        let arrayPalabras = ["ahorcado", "jazz", "recta", "curva", "matematicas", "pincho", "hola"];
+        
+        //random con lodash
+        let i = _.random(0, arrayPalabras.length - 1);
+        //let i = Math.floor(Math.random()*arrayPalabras.length);
+        let p = arrayPalabras[i];
+        
+        palabra = p.split("");
+        
+        const ahorcado = ["A", "H", "O", "R", "C", "A", "D", "O"];
+        
+        let numAciertos = 0;
+        let numErrores = 0;
 
-        /* if(letraInput.charAt(0) == " " || letraInput == ""){
-            alert("Debes introducir una letra");
-        }
-        */
+        let letraInput = document.getElementById("introducirLetras").value;
+        let encontrada = false; */
+
         for (let i = 0; i < letrasUsadas.length; i++) {
             if (letraInput.toLowerCase() == letrasUsadas[i].toLowerCase()) {
                 encontrada = true;
@@ -78,7 +88,6 @@ export default class Juego {
                 document.getElementById("reinicio").style.display = "block";
                 document.getElementById("inputLetras").style.display = "none";
                 document.getElementById("botonComprobar").style.display = "none";
-
             }
         }
     }

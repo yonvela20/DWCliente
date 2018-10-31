@@ -1,5 +1,10 @@
-/* import * as juego from "./juego";
-import * as tabla from "./tabla"; */
+/**
+ * Para importar descomentar los imports y poner que es de tipo modulo en 
+ * en el html. Lanza un error en la creacion del objeto. Posiblemente porque le faltan atributos. 
+ */
+
+/* import * as Juego from "./juego.js";
+import * as Tabla from "./tabla.js"; */
 
 window.onload = function () {
     document.getElementById("botonJugar").addEventListener('click', jugar, false);
@@ -40,12 +45,11 @@ let arrayPalabras = ["ahorcado", "jazz", "recta", "curva", "matematicas", "pinch
 //random con lodash
 let i = _.random(0, arrayPalabras.length - 1);
 //let i = Math.floor(Math.random()*arrayPalabras.length);
-p = arrayPalabras[i];
+let p = arrayPalabras[i];
 
 palabra = p.split("");
 
 const ahorcado = ["A", "H", "O", "R", "C", "A", "D", "O"];
-//const simbolos = ["","","","","","","","","","","","","","","","",""]; 
 
 let numAciertos = 0;
 let numErrores = 0;
@@ -175,7 +179,16 @@ class Juego {
         }
     }
 } 
+
 function jugar() {
+    
+    let clock;
+    $(document).ready(function() {
+        clock = $('.clock').FlipClock({
+            clockFace: 'MinuteCounter'
+        });
+    });
+
     //Ocultamos el boton de jugar y las regalas y mostramos todo lo demas para continuar jugando
     document.getElementById("botonJugar").style.display = "none";
     document.getElementById("reglasJuego").style.display = "none";
@@ -206,5 +219,4 @@ function comprobarLetras() {
 function reinicio(){
     window.location.reload();
 }
-
 
