@@ -1,3 +1,8 @@
+/**
+ * En este caso si quiero hacerlo bien por modulos deberia herenciar la clase Juego ya 
+ * que el atributo len del constructor de esta clase es la longitud de la palabra seleccionada 
+ * del array de palabras que hay en Juego 
+ */
 export default class Tabla {
     constructor(len) {
         this.len = len;

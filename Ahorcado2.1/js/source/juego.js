@@ -1,4 +1,11 @@
-export default class Juego {
+
+/**
+ * si quiero hacerlo por modulos me faltaria añadir mas atributos al constructor 
+ * que serian todos aquellos elementos que utilizan las funciones en la clase juego 
+ * que serian palabra, arrayPalabras y letrasUsadas. 
+ */
+
+ export default class Juego {
     constructor(palabra) {
         this._palabra = palabra;
     }

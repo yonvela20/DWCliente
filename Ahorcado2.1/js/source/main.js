@@ -3,6 +3,17 @@
  * en el html. Lanza un error en la creacion del objeto. Posiblemente porque le faltan atributos. 
  */
 
+ /** 
+  * Se ha intentando hacer mediante modulos pero no me reconoce los constructores 
+  * y no se como arreglarlo. Lo dejo como pendiente el hacer bien los imports y que me coja bien las cosas 
+  * pero no se como hacerlo, no he encontrado soluciones. Lo subo así porque no me da tiempo si no a subir la 
+  * practica a tiempo. 
+  * 
+  * Las clases derivadas no son compatibles con IE, tener en cuenta para proximas veces. 
+ */
+
+//TODO: Acabar de hacer el programa por modulos 
+
 /* import * as Juego from "./juego.js";
 import * as Tabla from "./tabla.js"; */
 
