@@ -1,0 +1,8 @@
+#circulo, #cuadrado, #triangulo, #divDestino, #divCirculo, #divTriangulo, #divCuadrado{
+    float: left;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
