@@ -52,11 +52,11 @@ window.onload = function(){
     if((imgCirculo.circulo) && (divCirculo.contCirculo)){
         console.log("condiciones del circulo");
 
-        circulo.ondrop = dropCirculo;
+        circulo.ondrop = drop;
         circulo.ondragover = allowDrop;
         imgCirculo.ondragstart = drag;
 
-        divCirculo.ondrop = dropCirculo;
+        divCirculo.ondrop = drop;
         divCirculo.ondragover = allowDrop;
     }
     
