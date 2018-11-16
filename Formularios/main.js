@@ -25,7 +25,7 @@ window.onload = function(){
 }
 
 //Funcion Flecha
-validacion = () => {
+function validacion() {
     fails = 0;
 
     //Datos Personales
@@ -50,17 +50,6 @@ validacion = () => {
         cp.setCustomValidity('Codigo postal no es correcto');
         fails++;
     }
-
-    /* //validacion Fecha
-    function anyo_valido(valor) {
-        var patt = /^\d{2}\/\d{2}\/\d{4}$/;
-        if (patt.test(valor) > fechaActual) {
-            return true;
-        } else {
-            return false;
-        }
-    } */
-
 
     //validacion de CP
     function cp_valido(valor) {
