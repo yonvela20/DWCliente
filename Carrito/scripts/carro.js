@@ -1,18 +1,20 @@
-$(function(){
-
+ $(function(){
     $("#citem").val(0); //Ponemos el contador de items a cero cada vez que se refresque la pagina
     $("#cprice").val(0 + " €"); //Ponemos el valor del precio total a cero cada ves que se refresque la pagina 
+    $(".stock").find("input").val(10); //Ponemos el valor del stock a 10 para que todo sea igual al refrescar   
 
-    var $stockLblInicial = $(".stock", $(this)).text(); //Pillamos la etiqueta del stock 
-    var $cantStockInicial = parseInt($stockLblInicial.slice(6)); //Cogemos solo el numero y lo pasamos a int 
-    //Hago un slice ya que el label es tal que "Stock 10" y solo quiero el numero 
+    //var $stockLbl = $(this).find("input"); //Pillamos el input donde esta el stock
+    //var $stock = parseInt($stockLbl.val(), 10); //Lo pasamos a int ya que es un objeto así de primeras
+    var $stockLbl = $(this).find('input'); 
+    var $stock = parseInt($stockLbl.val(), 10);
 
-    //Si hay items en stock 
-    if($cantStockInicial > 0){
-        $(".item").on("dblclick", dobleClickItems);
-    }else{
-        return false;
-    }
+    $(".item").each(function() {        
+        if($stock > 0) {
+           $(this).on("dblclick", dobleClickItems);
+        }
+    });
+    
+    $(".item").on("dblclick", dobleClickItems);
 }); 
 
     
@@ -21,28 +23,17 @@ $(function(){
  */
 
 /**
- * FIXME: El label del stock no se actualiza, siempre pilla 10 slñfjsf
+ * FIXME: Que solo se ejecute si hay stock 
  */
-
- /**
-  * Explicacion del problema: Defino @var $stockLblInicial y @var $cantStockInicial para
-  * comprobar si hay stock y si hay hacer el doble click, si no lo hay pues nada. 
-  * 
-  * Dentro de la funcion del dobleClick se define @var $stockLbl y @var $cantStock porque mas adelante 
-  * el valor de esas variables se pisará. En la funcion en si coge esos valores para que en @function compra() 
-  * se reste en uno el stock y se le asigne al texto del item clickado. El texto no cambia entonces 
-  * pilla siempre como que hay 10 items. El problema no está en el contador ya que resta como toca. El problema es 
-  * directamente no cambia el texto. He probado con @method text() y con @method html() y no funciona hM
-  */
-
 function dobleClickItems(){
     //Variable necesarias para clonar
     const $divCarrito = $("#cart_items"); //Pillamos el contenedor del carrito
     let $idItem = $(this).attr("id"); //Pillamos la id del item seleccionado (devuelve un string)
     let $clonedItem = $(this).clone(); //Clonamos el item 
 
-    var $stockLbl = $(".stock", $(this)).text(); //Pillamos la etiqueta del stock 
-    var $cantStock = parseInt($stockLbl.slice(6)); //Cogemos solo el numero y lo pasamos a int 
+    var $stockLbl = $(this).find("input"); //Pillamos el input donde esta el stock
+    var $stock = parseInt($stockLbl.val(), 10); //Lo pasamos a int ya que es un objeto así de primeras
+    console.log("Cantidad en stock precompra: " + $stock); //Pruebas: Te muestra la cantidad en stock
 
     let $precioLabel = $(".price", $(this)).text(); //Pillamos el precio del producto clickado
     let $precio = parseInt($precioLabel.slice(0, 4)); //Cogemos el numero y lo pasamos a int
@@ -53,24 +44,22 @@ function dobleClickItems(){
     //Pillamos el valor del input del precio total y lo pasamos a int tambien 
     let $precioTotal = parseInt($("#cprice").val().slice(0, 4));
 
-    compra($cantStock, $numItems, $precioTotal, $precio);
+    compra($stockLbl, $stock, $numItems, $precioTotal, $precio);
     cloneItem($idItem, $clonedItem, $divCarrito);
     
-    if($cantStock == 0){ //Si no quedan items le añadimos la clase "agotado" al item 
+    if($stock == 0 || $stock < 0){
         $(".stock", $(this)).addClass("agotado");
     }
 }
 
-function compra($cantStock, $numItems, $precioTotal, $precio){
-    $cantStock--; //Contador para decrementar el valor del stock  
-    $(".stock", $(this)).html("Stock " + $cantStock); //Reducimos en uno el numero de stock
+function compra($stockLbl, $stock, $numItems, $precioTotal, $precio){
+    $stock--; //Contador para decrementar el valor del stock  
+    $stockLbl.val($stock); //Reducimos en uno el numero de stock
 
-    console.log("Cantidad en stock " + $cantStock);
+    console.log("Cantidad en stock postcompra: " + $stock); //Pruebas: Te muestra la cantidad en stock
 
     $numItems++; //Incrementamos el numero de items comprados
     $("#citem").val($numItems); //Aumentamos el numero de compras
-
-    console.log($numItems);
 
     $precioTotal += $precio; //Al precio del input le vamos sumando el precio de todas la compras 
     $("#cprice").val($precioTotal + " €");

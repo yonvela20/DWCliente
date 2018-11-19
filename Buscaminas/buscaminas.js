@@ -221,7 +221,7 @@ class Tablero{
                 if (!celdaDerecha.bomba) {
                     //celdaDerecha.style.backgroundImage = "url('blank.gif')";
                     celdaDerecha.style.backgroundImage =  "url('images/open"+ celdaDerecha.numeroContiguo +".gif')";
-                    this.abreCero(celdaDerecha);
+                    //this.abreCero(celdaDerecha);
                 }                        
             }
             if(celdaIzquierda == null){
