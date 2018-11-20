@@ -1,3 +1,9 @@
+ /**
+  * TODO: Que cuando haya elementos repetidos en el carrito no me quite todos los mismos items. 
+  * Esto pasa porque el id del clonado es el mismo pero en el enunciado pone que eso más adelante 
+  * se solucionará. 
+  */
+ 
  $(function(){
     $("#citem").val(0); //Ponemos el contador de items a cero cada vez que se refresque la pagina
     $("#cprice").val(0 + " €"); //Ponemos el valor del precio total a cero cada ves que se refresque la pagina 
@@ -76,19 +82,51 @@ function cloneItem($idItem, $clonedItem, $divCarrito){
 }
  
 function borrado(){
-    let idPadre = $(this).parent().attr("id");
-    let idItem = idPadre.substring(1);
+    const $divCarrito = $("#cart_items"); //Pillamos el contenedor del carrito
+    //Pillamos los elementos para restablecer el stock
+    let idClonado = $(this).parent().attr("id");
+    let idItem = idClonado.substring(1);
+    
+    //Pillamos elementos para restablecer el numero de compras
+    let $numItems = $("#citem").val(); //Pillamos el valor del input de la cantidad de elementos 
+    parseInt($numItems); //Pasamos el valor a int para poder hacer operaciones
+    
+    //Pillamos los elementos para restablecer el precio total
+    let $precioLabel = $("#" + idItem + " > .price").html(); //Pillamos el precio del producto clickado
+    let $precio = parseInt($precioLabel.substring(0, 4)); //Cogemos el numero y lo pasamos a int
+    
+    let $precioTotal = parseInt($("#cprice").val().substring(0, 4));
 
-    //Stock actual
+    //Actualizar el stock
     let lblStock = $("#" + idItem + " > .stock").html();    
     let stock = parseInt(lblStock.substring(6));
 
-    stock++;
-    lblStock = stock;
-    $("#" + id + " > .stock").html("Stock "+lblStock);  
-    
-    
-
-    console.log(stock);
+    cancelar($(this), $divCarrito, idClonado, idItem, $numItems, $precio,
+            $precioTotal, lblStock, stock);
+       
     return false;
+}
+
+function cancelar($this, $divCarrito, idClonado, idItem, 
+            $numItems, $precio, $precioTotal, lblStock, stock){
+                stock++;
+                lblStock = stock;
+                $("#" + idItem + " > .stock").html("Stock "+lblStock);
+            
+                //Actualizar el numero de items comprados 
+                $numItems--; //Decrementamos el numero de items comprados
+                $("#citem").val($numItems); //Decrementamos el numero de compras
+            
+                //Actualizar el precio 
+                $precioTotal -= $precio; //Al precio del input le vamos sumando el precio de todas la compras 
+                $("#cprice").val($precioTotal + " €");
+            
+                //Quitamos el item del carrito 
+                $divCarrito.children("#"+idClonado).remove();
+
+                //Si el stock ahora es mayor que 0 se le quita la clase agotado
+                if(stock > 0){
+                    $(".stock", $this).removeClass("agotado");
+                }
+
 }
