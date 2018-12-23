@@ -21,8 +21,8 @@ window.onload = function () {
 	const rbMasculino = document.getElementById("rbMasculino");
 	const rbFemenino = document.getElementById("rbFemenino");
 
-	//rbMasculino.addEventListener("click", clasificadosMasculino, false);
-	//rbFemenino.addEventListener("click", clasificadosFemenino, false);
+	rbMasculino.addEventListener("click", clasificadosMasculino, false);
+	rbFemenino.addEventListener("click", clasificadosFemenino, false);
 
 	//Botones para seleccionar la galeria o la clasificacion
 	let bGaleria = document.getElementById("bGaleria");
@@ -56,51 +56,52 @@ window.onload = function () {
 	bAdelante.disabled = false;
 	
 	let contador = 1 //contador para las imagenes
+
+	function pasaFotoAdelante(){
+		document.getElementById("img"+contador).style.display = "none";
+		contador++;
+		document.getElementById("img"+contador).style.display = "block";
+		console.log(contador);
 	
-	//Array de ganadores
-	const ganadores = [
-		diezKFemen = ["Patricia", "Sara", "Nuria"],
-		diezKMasc = ["Javi", "Juan", "Pedro"],
+		if(contador==4){
+			bAdelante.disabled = true;
+		}
 
-		mediaFemen = ["Pilar", "Julia", "Elena"],
-		mediaMasc = ["Erik", "Pepe", "Antonio"],
+		if(contador > 1){
+			bAtras.disabled = false;
+		}
+	}
 
-		maratonFemen = ["Eva", "Marta", "Marisa"],
-		maratonMasc = ["Sergi", "Angel", "Adri"]
-	]; 
+	function pasaFotoAtras(){
+		document.getElementById("img"+contador).style.display = "none";
+		contador--;
+		document.getElementById("img"+contador).style.display = "block";
+		console.log(contador);
 
+		if(contador == 1){
+			bAtras.disabled = true;
+		}
 
+		if(contador < 4){
+			bAdelante.disabled = false;
+		}
+	} 
 }
+//Array de ganadores
+const ganadores = [
+	diezKFemen = ["Patricia", "Sara", "Nuria"],
+	diezKMasc = ["Javi", "Juan", "Pedro"],
 
-function pasaFotoAdelante(){
-	document.getElementById("img"+contador).style.display = "none";
-	contador++;
-	document.getElementById("img"+contador).style.display = "block";
-	console.log(contador);
+	mediaFemen = ["Pilar", "Julia", "Elena"],
+	mediaMasc = ["Erik", "Pepe", "Antonio"],
 
-	if(contador==4){
-		bAdelante.disabled = true;
-	}
+	maratonFemen = ["Eva", "Marta", "Marisa"],
+	maratonMasc = ["Sergi", "Angel", "Adri"]
+]; 
 
-	if(contador > 1){
-		bAtras.disabled = false;
-	}
-}
+const rbMasculino = document.getElementById("rbMasculino");
+const rbFemenino = document.getElementById("rbFemenino");
 
-function pasaFotoAtras(){
-	document.getElementById("img"+contador).style.display = "none";
-	contador--;
-	document.getElementById("img"+contador).style.display = "block";
-	console.log(contador);
-
-	if(contador == 1){
-		bAtras.disabled = true;
-	}
-
-	if(contador < 4){
-		bAdelante.disabled = false;
-	}
-} 
 /**
  * Funciones Drag and Drop 
  */
@@ -120,11 +121,14 @@ function drop(ev) {
 	var data = ev.dataTransfer.getData("text");
 	if((data == "10k") && (ev.target.id == "contenedor")){
 		rbDiv.style.display = "block";
-
 		ev.target.appendChild(document.getElementById(data));
 		
-		if(rbFemenino.isSelected()){
+		if(rbFemenino.checked){
 			console.log("he seleccionado femenino");
+
+			for(let i = 0; i < 3; i++){
+				console.log(ganadores[0][i]);
+			}
 		}
 	}
 
@@ -139,14 +143,6 @@ function drop(ev) {
 	}
 }
 
-/* function clasificadosFemenino(){
-	console.log("Estos son los clasificados Femeninos");
-}
-
-function clasificadosMasculino(){
-	console.log("Estos son los clasificados Masculinos");
-} */
-
 function muestraGaleria(e) {
 	document.getElementById("galeria").style.display = "block";
 	document.getElementById("clasif").style.display = "none";
@@ -158,18 +154,13 @@ function muestraClasificacion(e) {
 	document.getElementById("clasif").style.display = "block";
 }
 
-function muestraGanadoresFemen(cont){
-	for(let i = 0; i < ganadores[cont][i].length; i++){
-		
+//Enviar Radio Button 
+function getClasificacion(cat, genero){
+	if(genero.checked){
+		for(let i = 0; i < 3; i++){
+			console.log(ganadores[cat][i]);
+		}
 	}
 }
 
 
-function actualizaListaGanadores() {
-	var ganadores = new Array(
-		new Array(new Array("10K-Junior1", "10K-Junior2", "10K-Junior3"), new Array("10K-Senior1", "10K-Senior2", "10K-Senior3"), new Array("10K-Veteranos1", "10K-Veteranos2", "10K-Veteranos3")),
-		new Array(new Array("M-Junior1", "M-Junior2", "M-Junior3"), new Array("M-Senior1", "M-Senior2", "M-Senior3"), new Array("M-Veteranos1", "M-Veteranos2", "M-Veteranos3"))
-	);
-}
-	
-	

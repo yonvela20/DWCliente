@@ -1,7 +1,4 @@
-/**
- * Me ha quedado por hacer que al pulsar los rb me salgan los clasificados. Seria comprobando cual
- * de los dos esta seleccionado y en la funcion del drop.
- */
+
 window.onload = function () {
 	//Div para el drag and drop 
 	const contenedor = document.getElementById("contenedor");
@@ -24,8 +21,8 @@ window.onload = function () {
 	const rbMasculino = document.getElementById("rbMasculino");
 	const rbFemenino = document.getElementById("rbFemenino");
 
-	rbMasculino.addEventListener("click", clasificadosMasculino, false);
-	rbFemenino.addEventListener("click", clasificadosFemenino, false);
+	//rbMasculino.addEventListener("click", clasificadosMasculino, false);
+	//rbFemenino.addEventListener("click", clasificadosFemenino, false);
 
 	//Botones para seleccionar la galeria o la clasificacion
 	let bGaleria = document.getElementById("bGaleria");
@@ -57,11 +54,9 @@ window.onload = function () {
 
 	bAtras.disabled = true;
 	bAdelante.disabled = false;
-	
-	let contador = 1 //contador para las imagenes
-
+		
 	//Array de ganadores
- 	const ganadores = [
+	const ganadores = [
 		diezKFemen = ["Patricia", "Sara", "Nuria"],
 		diezKMasc = ["Javi", "Juan", "Pedro"],
 
@@ -72,37 +67,39 @@ window.onload = function () {
 		maratonMasc = ["Sergi", "Angel", "Adri"]
 	]; 
 
-	function pasaFotoAdelante(){
-		document.getElementById("img"+contador).style.display = "none";
-		contador++;
-		document.getElementById("img"+contador).style.display = "block";
-		console.log(contador);
-	
-		if(contador==4){
-			bAdelante.disabled = true;
-		}
 
-		if(contador > 1){
-			bAtras.disabled = false;
-		}
+}
+let contador = 1 //contador para las imagenes
+
+function pasaFotoAdelante(){
+	document.getElementById("img"+contador).style.display = "none";
+	contador++;
+	document.getElementById("img"+contador).style.display = "block";
+	console.log(contador);
+
+	if(contador==4){
+		bAdelante.disabled = true;
 	}
 
-	function pasaFotoAtras(){
-		document.getElementById("img"+contador).style.display = "none";
-		contador--;
-		document.getElementById("img"+contador).style.display = "block";
-		console.log(contador);
-
-		if(contador == 1){
-			bAtras.disabled = true;
-		}
-
-		if(contador < 4){
-			bAdelante.disabled = false;
-		}
-	} 
+	if(contador > 1){
+		bAtras.disabled = false;
+	}
 }
 
+function pasaFotoAtras(){
+	document.getElementById("img"+contador).style.display = "none";
+	contador--;
+	document.getElementById("img"+contador).style.display = "block";
+	console.log(contador);
+
+	if(contador == 1){
+		bAtras.disabled = true;
+	}
+
+	if(contador < 4){
+		bAdelante.disabled = false;
+	}
+} 
 /**
  * Funciones Drag and Drop 
  */
@@ -114,6 +111,7 @@ function allowDrop(ev) {
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
+
 let aciertos = 0;
 
 function drop(ev) {
@@ -122,13 +120,11 @@ function drop(ev) {
 	if((data == "10k") && (ev.target.id == "contenedor")){
 		rbDiv.style.display = "block";
 
-        if(document.getElementById("rbMasculino").checked){
-            console.log("Los femeninos");
-        }
-        if(document.getElementById("rbMasculino").checked){
-            console.log("Los femeninos");
-        }
 		ev.target.appendChild(document.getElementById(data));
+		
+		if(rbFemenino.isSelected()){
+			console.log("he seleccionado femenino");
+		}
 	}
 
 	if((data == "mediaMaraton") && (ev.target.id == "contenedor")){
@@ -142,23 +138,37 @@ function drop(ev) {
 	}
 }
 
+/* function clasificadosFemenino(){
+	console.log("Estos son los clasificados Femeninos");
+}
+
+function clasificadosMasculino(){
+	console.log("Estos son los clasificados Masculinos");
+} */
+
 function muestraGaleria(e) {
 	document.getElementById("galeria").style.display = "block";
 	document.getElementById("clasif").style.display = "none";
 }
 
 function muestraClasificacion(e) {
+
 	document.getElementById("galeria").style.display = "none";
 	document.getElementById("clasif").style.display = "block";
 }
 
+function muestraGanadoresFemen(cont){
+	for(let i = 0; i < ganadores[cont][i].length; i++){
+		
+	}
+}
 
-/* 
+
 function actualizaListaGanadores() {
 	var ganadores = new Array(
 		new Array(new Array("10K-Junior1", "10K-Junior2", "10K-Junior3"), new Array("10K-Senior1", "10K-Senior2", "10K-Senior3"), new Array("10K-Veteranos1", "10K-Veteranos2", "10K-Veteranos3")),
 		new Array(new Array("M-Junior1", "M-Junior2", "M-Junior3"), new Array("M-Senior1", "M-Senior2", "M-Senior3"), new Array("M-Veteranos1", "M-Veteranos2", "M-Veteranos3"))
 	);
-} */
+}
 	
 	
