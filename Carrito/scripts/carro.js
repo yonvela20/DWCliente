@@ -9,9 +9,16 @@ function actualizaStockProducto($item, incremento)
 	
 	if (stock+incremento >= 0)
 	{
+
+		$item.children(".stock").html("Stock " + stock).hide();
 		stock += incremento;
+<<<<<<< HEAD
 		$item.children(".stock").html("Stock " + stock).hide();
 		$item.children(".stock").html("Stock " + stock).fadeIn();
+=======
+		$item.children(".stock").html("Stock " + stock).fadeIn(600);
+
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 		if (stock == 0)
 		{
 			$item.find(".stock").addClass("agotado");
@@ -31,21 +38,31 @@ function actualizaStockProducto($item, incremento)
 function actualizaNumeroProductosPedidos(incremento)
 {
 	var numProductosPedido = parseInt($("#citem").val());
+	$("#citem").val(numProductosPedido).hide();
 	numProductosPedido += incremento;
+<<<<<<< HEAD
 
 	$("#citem").hide();
 	$("#citem").val(numProductosPedido);
 	$("#citem").fadeIn();
+=======
+	$("#citem").val(numProductosPedido).fadeIn(600);
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 }
 
 function actualizaPrecioTotal($item, incremento)
 {
 	var precioPedido = parseInt($("#cprice").val());
+	$("#cprice").val(precioPedido + " €").hide();
 	precioPedido += parseInt(incremento);
+<<<<<<< HEAD
 	
 	$("#cprice").hide();
 	$("#cprice").val(precioPedido + " €");
 	$("#cprice").fadeIn();
+=======
+	$("#cprice").val(precioPedido + " €").fadeIn(600);	
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 }
 
 function incrementaAnchoCarrito(incremento)
@@ -56,6 +73,7 @@ function incrementaAnchoCarrito(incremento)
 function anyadeProductoAlCarrito($item)
 {
 	var $delete = $('<a href="" class="delete"></a>');
+<<<<<<< HEAD
 	var $cantidad = $('<input class="cantidad" type="text" value="1" readonly="true"/>'); 
 	var $minus = $('<a href="" class="minus"></a>');
 	var $add = $('<a href="" class="add"></a>');
@@ -94,6 +112,16 @@ function anyadeProductoAlCarrito($item)
 		$copia.animate({width:"toggle"});
 	}
 
+=======
+
+	var id = "c"+$item.attr("id");
+	$copia = $item.clone().attr("id", id).addClass('icart').prepend($delete);
+	$copia.children(":not(a)").andSelf().css("cursor", "default").find(".stock").hide();
+	
+	$copia.hide();
+	$("#cart_items").prepend($copia);
+	$copia.animate({width: "toggle"});
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 
 }
 
@@ -136,6 +164,7 @@ function establece_evento_dblclick_items($items)
 		anyadeProductoAlCarrito($(this));
 
 		var numArticulosCarrito = $("#cart_items").children().length;
+<<<<<<< HEAD
 		if (numArticulosCarrito > 4) 
 			incrementaAnchoCarrito(anchoProductoEnCarrito);
 
@@ -144,6 +173,18 @@ function establece_evento_dblclick_items($items)
 			$("#btn_prev").show();
 			$("#btn_next").show();
 		}
+=======
+		if (numArticulosCarrito > 4) {
+			incrementaAnchoCarrito(anchoProductoEnCarrito);
+
+			$("#btn_prev").show();
+			$("#btn_next").show();
+		}
+
+		$("#btn_comprar").show();
+		$("#btn_clear").show();
+		
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 	});
 }
 
@@ -161,6 +202,10 @@ function eliminaProductoDelCarrito($item)
 	var pos = $("#cart_items").offset();
 	
 	var numArticulosCarrito = $("#cart_items").children().length-1;
+<<<<<<< HEAD
+=======
+
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 	if (numArticulosCarrito >= 4) 
 	{
 		incrementaAnchoCarrito(-anchoProductoEnCarrito);
@@ -170,6 +215,7 @@ function eliminaProductoDelCarrito($item)
 		if (der < posCarritoInicial.left + anchoCarritoInicial)
 			pos.left = posCarritoInicial.left;
 	}
+<<<<<<< HEAD
 	else{
 		pos.left = posCarritoInicial.left;
 	}
@@ -178,20 +224,50 @@ function eliminaProductoDelCarrito($item)
 	
 	//Condicion para ocultar las flechas de navegacion 
 	if(numArticulosCarrito <= 4){
+=======
+	else
+		pos.left = posCarritoInicial.left;
+	
+	$("#cart_items").offset(pos);
+
+	if($("#citem").val() == 0){
+		$("#btn_comprar").hide();
+		$("#btn_clear").hide();
+	} 
+	
+	if($("#citem").val() <= 4){
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 		$("#btn_prev").hide();
 		$("#btn_next").hide();
 	}
 	
+<<<<<<< HEAD
 	$item.effect("explode");
 	$item.remove();
+=======
+	$item.fadeOut();
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 }
 
 $(function() 
 {
+<<<<<<< HEAD
 	numArticulosCarrito = $("#cart_items").children().length;
 	$("#citem").val(0);
 	$("#cprice").val(0);
 
+=======
+	$("#citem").val(0);
+	$("#cprice").val(0);
+
+	if($("#citem").val() <= 0){
+		$("#btn_comprar").hide();
+		$("#btn_prev").hide();
+		$("#btn_next").hide();
+		$("#btn_clear").hide();	
+	}
+	
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 	anchoCarritoInicial = $("#cart_items").width();
 	posCarritoInicial = $("#cart_items").offset();
 
@@ -209,6 +285,7 @@ $(function()
 		$(".delete").trigger("click");
 	});
 	
+<<<<<<< HEAD
 	$("#btn_prev").click(function(evento) 
 	{
 		desplazaCarritoIzquierda(50);
@@ -224,4 +301,27 @@ $(function()
 		$("#btn_prev").hide();
 		$("#btn_next").hide();
 	}
+=======
+	//mouse over
+	$("#btn_prev").mouseover(function(evento) 
+	{
+		desplazaCarritoIzquierda(50);
+	});
+
+	$("#btn_next").mouseover(function(evento) 
+	{
+		desplazaCarritoDerecha(50);
+	});
+
+/* 	//mouse out
+	$("#btn_prev").mouseout(function(evento) 
+	{
+		desplazaCarritoIzquierda(50);
+	});
+
+	$("#btn_next").mouseout(function(evento) 
+	{
+		desplazaCarritoDerecha(50);
+	}); */
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 });

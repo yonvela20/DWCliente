@@ -3,8 +3,11 @@
  * lo apagas con off() no se enciende con el on() así que por el momento habrá que 
  * dejarlo con la bandera y ya se verá luego. 
  */
+<<<<<<< HEAD
 
  //TODO: Está inacabado
+=======
+>>>>>>> bd1c8de674ae85be0b39e5836da84ef6c1666b19
 function actualizaStockProducto($item, incremento)
 {
     var actualizado = false;
