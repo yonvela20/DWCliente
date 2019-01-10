@@ -9,6 +9,8 @@ $(document).ready(function(){
     let clickSelect = 1;
     let clickRb = 1; 
 
+    //var $editar = $("<a href='#' id='editar'> editar </a>");
+
     //Click en el añadido de inputs
     $("#addInput").click(function(){ 
         //Pillamos el input de muestra y lo clonamos 
@@ -37,15 +39,14 @@ $(document).ready(function(){
     //Click en el añadido de selects
     $("#addSelect").click(function(){
         //En este caso vamos a crear el select de cero ya que el de muestra no nos sirve de demasiado 
-        var $selectNuevo = $("<select id='select"+clickSelect+"'></select>");
+        var $selectNuevo = $("<select id='select"+clickSelect+"'></select><br>");
         var opciones = Number(prompt("Cuantas opciones quieres? Asegurate de introducir un entero", "1"));
 
         if(Number.isInteger(opciones)){
 
             for(let i = 0; i < opciones; i++){
                 var textoOpcion = prompt("Texto de la opcion "+(i+1));
-                $selectNuevo.append("<option id='opcion"+(i+1)+"'>"+textoOpcion+"</option><br><br>");
-    
+                $selectNuevo.append("<option id='opcion"+(clickRb)+"'>"+textoOpcion+"</option><br><br>");
             }
     
             $("#visualizador").append($selectNuevo);
@@ -53,8 +54,37 @@ $(document).ready(function(){
         } else{
             alert("Numero de opciones incorrecto");
         }
-
     });
 
 
+    $("#addRbutton").click(function(){
+        var cantidad = Number(prompt("Cuantos radio buttons quieres?", "1"));
+
+        if(Number.isInteger(cantidad)){
+            var $form = $("<form action=''>");
+
+            var nombre = prompt("Nombre del grupo");
+
+            for(let i = 0; i < cantidad; i++){
+                var valor = prompt("El valor del radioButton " + (i+1));
+                var label = prompt("El label del radioButton " + (i+1));
+                var $rbNuevo = $("<input type='radio' value='"+valor+"' name='"+nombre+"'>" + label +"<br>");
+
+                $form.append($rbNuevo)
+
+                $("#visualizador").append($form).append("<br>");
+            }
+        } else{
+            alert("Cantidad de radioButton incorrecta");
+        }
+    });
+
+    $("#generaCodigo").click(function(){
+
+        var codigo = $("#visualizador");
+
+        var codigoStr = codigo.prop('outerHTML');
+
+        $("#codigo").text(codigoStr);
+    });
 });

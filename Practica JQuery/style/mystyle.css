@@ -11,3 +11,8 @@
   }
 
   /*Aqui ya el estilo del documento*/
+  #codigo{
+    border: 2px solid black;
+    height: 200px;
+    width: 33%;
+  }

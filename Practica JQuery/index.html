@@ -12,34 +12,41 @@
 </head>
 
 <body>
-    <div clas="row">
-        <div id="visualizador" class="column">
+    <div class="row">
+        <div class="column">
             <h2>Visualizador del formulario</h2>
-            <p>Lorem ipsum dolor</p>
+            <div id="visualizador">
+            </div>
+
         </div>
-        <div id="widgets" class="column">
+        <div class="column">
             <h2>Widgets Disponibes</h2>
-            <div id="divInput">
-                <input id="input" title="hola">
-                <button id="addInput"> Añadir Input </button>
+            <div id="widgets" class="column">
+                <div id="divInput">
+                    <input id="input" title="hola">
+                    <button id="addInput"> Añadir Input </button>
+                </div>
+                <br>
+                <div id="divSelect">
+                    <select id="selectMuestra">
+                        <option id="val">Option</option>
+                    </select>
+                    <button id="addSelect"> Añadir Select </button>
+                </div>
+                <br>
+                <div id="divRb">
+                    <input type="radio"> Rb Muestra
+                    <input type="radio"> Rb Muestra
+                    <button id="addRbutton"> Añadir Radio Button </button>
+                </div>
+                <br>
             </div>
-            <br>
-            <div id="divSelect">
-                <select id="selectMuestra">
-                    <option id="val">Option</option>
-                </select>
-                <button id="addSelect"> Añadir Select </button>
-            </div>
-            <br>
-            <div id="divRb">
-                <input type="radio"> Rb Muestra
-                <input type="radio"> Rb Muestra
-                <button id="addRbutton"> Añadir Radio Button </button>
-            </div>
-            <br>
         </div>
     </div>
-
+    <div id="codigo">
+    </div>
+    <br>
+    <button id="generaCodigo">Generar codigo</button>
 </body>
 
 </html>
