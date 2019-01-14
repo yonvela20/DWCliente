@@ -1,0 +1,23 @@
+/* Esta parte de aqui es solo para que se vea dividido en dos columnas (Es de w3s xd)*/
+body{
+  padding-left: 2%;
+}
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /*Aqui ya el estilo del documento*/
+  #codigo{
+    border: 2px solid black;
+    height: 200px;
+    width: 33%;
+    overflow-y: scroll;
+  }

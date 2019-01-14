@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Generador de formularios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/mystyle.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <h2>Visualizador del formulario</h2>
+            <div id="visualizador">
+            </div>
+
+        </div>
+        <div class="column">
+            <h2>Widgets Disponibes</h2>
+            <div id="widgets" class="column">
+
+                <div id="divInput">
+                    <p><b>Input muestra</b></p>
+                    <input id="input" title="hola">
+                    <button id="selectInput"> Seleccionar </button>
+
+                    <div id="formularioInput">
+                        <br>
+                        ID: <input id="inputId">
+                        <br><br>
+                        Size: <input id="inputSize" type="number">
+                        <br><br>
+                        Title: <input id="inputTitle">
+                        <br><br>
+                        <button id="addInput"> Añadir Input </button> <button id="CancelarInput"> Cancelar </button>
+
+                    </div>
+                </div>
+                <br>
+
+                <div id="divSelect">
+                    <p><b>Select muestra</b></p>
+                    <select id="selectMuestra">
+                        <option id="val">Option</option>
+                    </select>
+                    <button id="selectSelect"> Seleccionar </button>
+                    <div id="formularioSelect">
+                        <br>
+                        ID: <input id="selectId">
+                        <br><br>
+                        Cantidad de opciones: <input id="selectCantidad" type="number">
+                        <br><br>
+                        <button id="confirmaCantidadSelect"> Confirmar </button>
+                        <br><br>
+                        <p>El texto de las opciones apareceran al confirmar el numero de opciones</p>
+                        <button id="addSelect"> Añadir Select </button> <button id="CancelarSelect"> Cancelar </button>
+
+                    </div>
+                </div>
+                <br>
+                <div id="divRb">
+                    <p><b>Radio Buttons muestra</b></p>
+                    <input type="radio"> Rb 1
+                    <input type="radio"> Rb 2
+                    <button id="selectRButton"> Seleccionar </button>
+                    <div id="formularioRButton">
+                        <br>
+                        ID: <input id="idRButton">
+                        <br><br>
+                        Cantidad de Radio button: <input id="RButtonCantidad" type="number">
+                        <br><br>
+                        Nombre del grupo de Radio button: <input id="RButtonNombre">
+                        <br><br>
+                        <button id="confirmaCantidadRButton"> Confirmar </button>
+                        <br><br>
+                        <p>Las demás opciones se podrán rellenar una vez confirmado la cantidad de RButtons</p>
+                        <button id="addRButton"> Añadir RButton </button> <button id="CancelarRButton"> Cancelar </button>
+
+                    </div>
+                    <br><br>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div id="codigo" >
+    </div>
+    <br>
+    <button id="generaCodigo">Generar codigo</button> <button id="borradoTotal"> Borrar todo </button>
+</body>
+</html>
