@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <script src="../Angular viejuno/angular-1.2.32/angular.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div ng-controller='controlador1'>
+
+        Introduce un color: <input ng-model='style.backgroundColor'> <br>
+        <div ng-style='style'>
+            El color de fondo es {{style.backgroundColor}}
+        </div><br><br>
+
+    </div>
+
+    <div ng-controller='controlador2'>
+        Introduce un color para las letras <input ng-model='style.color'>
+        <p ng-style='style'>El color es {{style.color}}</p>
+    </div>
+    <br><br>
+    <!-- <div ng-controller='controlador3'>
+        <input ng-change=''>
+        <p>El input ha cambiado: </p>
+    </div> -->
+</body>
+
+</html>

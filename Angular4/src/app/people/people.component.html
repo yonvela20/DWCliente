@@ -1,0 +1,52 @@
+<!-- <div class="card">
+  <div class="container">
+    <h3>{{title1}}</h3>
+    <div class="row" *ngIf="people && people.length;">
+      <div class="col-6" *ngFor="let person of people">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title" [ngStyle]="{'background-color':'green', 'font-size':'30px'}">{{person.country}}</h4>
+            <p class="card-text" [ngStyle]="{'background-color': getColor(person.country)}"> {{person.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  
+<div class="card-block">
+    <form class="form">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 text-sm-right" for="filterDesc">
+          Filtro:
+        </label>
+        <div class="col-sm-5">
+          <input type="text" [(ngModel)]="filterSearch" class="form-control" name="filterDesc" id="filterDesc"
+            placeholder="Filter...">
+        </div>
+        <label class="col-form-label col-sm-5">
+          Filtrando por: {{filterSearch}}
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h3>{{title2}}</h3>
+    <button (click)="toggleImage()"> Mostrar </button>
+    <!-- <button (click)="dayNight()"> Dia/Noche </button> -->
+    <br><br>
+    <div class="row" *ngIf="people && people.length;">
+      <div class="col-6" *ngFor="let person of people">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title" [ngClass]="{'bg-info': true}">{{person.country}}</h4>
+            <!--  <p class="card-text" [ngStyle]="{'background-color':person.country === 'Espanya' ? 'red' : 'blue'}"> {{person.name}} </p> -->
+            <img [src]="person.url" *ngIf="showImage">
+            <p class="card-text" [ngClass]="getClass(person.name)"> {{person.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
