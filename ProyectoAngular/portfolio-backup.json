@@ -1,0 +1,19 @@
+[ {
+  "frase" : "Lorem ipsum dolor sit amet consectetur adipiscing ",
+  "nombre" : "Yon Vela",
+  "subtitulo" : "alumno",
+  "twitter" : "@yon_vela",
+  "url" : "https://firebasestorage.googleapis.com/v0/b/portfolio-dc302.appspot.com/o/team-1.jpg?alt=media&token=99b39569-62f7-4719-aff3-4debe192066f"
+}, {
+  "frase" : "ectus nullam, conubia scelerisque duis a gravida aenean interdum",
+  "nombre" : "Mamarracho Perez",
+  "subtitulo" : "alumno",
+  "twitter" : "@mama_pere",
+  "url" : "https://firebasestorage.googleapis.com/v0/b/portfolio-dc302.appspot.com/o/team-2.jpg?alt=media&token=c6d88770-8c85-4b65-ab94-0a8700f37219"
+}, {
+  "frase" : "massa vestibulum, facilisis dictum proin sapien eleifend non aliquam",
+  "nombre" : "Marina Martineze",
+  "subtitulo" : "profesora",
+  "twitter" : "@mar.mar",
+  "url" : "https://firebasestorage.googleapis.com/v0/b/portfolio-dc302.appspot.com/o/team-3.jpg?alt=media&token=bc539ab8-e485-4832-b756-60929b69930a"
+} ]
