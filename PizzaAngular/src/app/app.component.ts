@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceMenuService } from './servicios/service.menu.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PizzaAngular';
+  constructor(public menuService : ServiceMenuService){
+
+    }
 }
