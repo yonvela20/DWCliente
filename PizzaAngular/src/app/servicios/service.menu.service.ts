@@ -14,7 +14,7 @@ export class ServiceMenuService {
    }
 
    cargaMenu(){
-    this.http.get('https://pizzeria-e4851.firebaseio.com/menu.json')
+    this.http.get('https://pizzeria-e4851.firebaseio.com/menu/pizzas.json')
     .subscribe((respuesta:IProductos)=>{
        this.cargada = true; 
        this.productos = respuesta; 

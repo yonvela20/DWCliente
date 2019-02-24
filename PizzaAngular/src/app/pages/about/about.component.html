@@ -77,50 +77,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
+      <div *ngFor="let persona of plantillaService.plantilla" class="col-lg-3 d-flex mb-sm-4 ftco-animate">
         <div class="staff">
-          <div class="img mb-4" style="background-image: url(assets/images/person_1.jpg);"></div>
+          <div class="img mb-4" style="background-image: url(assets/images/{{persona.nombre}}.jpg);"></div>
           <div class="info text-center">
-            <h3>Tom Smith</h3>
-            <span class="position">Hair Specialist</span>
+            <h3>{{persona.nombre}}</h3>
+            <span class="position">{{persona.especialidad}}</span>
             <div class="text">
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
-        <div class="staff">
-          <div class="img mb-4" style="background-image: url(assets/images/person_2.jpg);"></div>
-          <div class="info text-center">
-            <h3>Mark Wilson</h3>
-            <span class="position">Beard Specialist</span>
-            <div class="text">
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
-        <div class="staff">
-          <div class="img mb-4" style="background-image: url(assets/images/person_3.jpg);"></div>
-          <div class="info text-center">
-            <h3>Patrick Jacobson</h3>
-            <span class="position">Hair Stylist</span>
-            <div class="text">
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
-        <div class="staff">
-          <div class="img mb-4" style="background-image: url(assets/images/person_4.jpg);"></div>
-          <div class="info text-center">
-            <h3>Ivan Dorchsner</h3>
-            <span class="position">Beard Specialist</span>
-            <div class="text">
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>{{persona.descripcion}}</p>
             </div>
           </div>
         </div>

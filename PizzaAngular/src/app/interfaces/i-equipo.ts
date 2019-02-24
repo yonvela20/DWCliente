@@ -1,5 +1,5 @@
 export interface IEquipo {
-    cargo?: string;
+    especialidad?: string;
     nombre?: string;
     descripcion?: string;
 }

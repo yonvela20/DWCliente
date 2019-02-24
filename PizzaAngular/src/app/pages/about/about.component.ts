@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, SkipSelf } from '@angular/core';
 import { ScriptService } from './../../servicios/service.scripts.service';
+import { ServicePlantillaService } from 'src/app/servicios/service.plantilla.service';
 
 @Component({
   selector: 'app-about',
@@ -8,7 +9,7 @@ import { ScriptService } from './../../servicios/service.scripts.service';
 })
 export class AboutComponent implements OnInit, OnDestroy {
 
-  constructor(public script: ScriptService) { }
+  constructor(public script: ScriptService, public plantillaService: ServicePlantillaService) { }
 
   ngOnInit() {
 

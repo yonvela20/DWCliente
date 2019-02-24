@@ -28,71 +28,20 @@
   <div class="container-wrap">
     <div class="row no-gutters d-flex">
 
+      <!-- TODO: Hacer que este bucle se haga un numero limitado de iteraciones -->
+
       <div *ngFor="let pizza of menuService.productos" class="col-lg-4 d-flex ftco-animate">
         <div class="services-wrap d-flex">
-          <a class="img" style="background-image: url(assets/images/pizza-1.jpg);"></a>
+          <a class="img" style="background-image: url(assets/images/{{pizza.nombre}}.jpg);"></a>
           <div class="text p-4">
             <h3>{{pizza.nombre}}</h3>
             <p>{{pizza.descripcion}} </p>
             <p class="price"><span>{{pizza.precio}}€</span></p>
           </div>
         </div>
+        <br>
       </div>
-
-
-
-
-      <!-- <div class="col-lg-4 d-flex ftco-animate">
-        <div class="services-wrap d-flex">
-          <a class="img" style="background-image: url(assets/images/pizza-2.jpg);"></a>
-          <div class="text p-4">
-            <h3>Greek Pizza</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            <p class="price"><span>$2.90</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 d-flex ftco-animate">
-        <div class="services-wrap d-flex">
-          <a class="img" style="background-image: url(assets/images/pizza-3.jpg);"></a>
-          <div class="text p-4">
-            <h3>Caucasian Pizza</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            <p class="price"><span>$2.90</span></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 d-flex ftco-animate">
-        <div class="services-wrap d-flex">
-          <a class="img order-lg-last" style="background-image: url(assets/images/pizza-4.jpg);"></a>
-          <div class="text p-4">
-            <h3>American Pizza</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia </p>
-            <p class="price"><span>$2.90</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 d-flex ftco-animate">
-        <div class="services-wrap d-flex">
-          <a class="img order-lg-last" style="background-image: url(assets/images/pizza-5.jpg);"></a>
-          <div class="text p-4">
-            <h3>Tomatoe Pie</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            <p class="price"><span>$2.90</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 d-flex ftco-animate">
-        <div class="services-wrap d-flex">
-          <a class="img order-lg-last" style="background-image: url(assets/images/pizza-6.jpg);"></a>
-          <div class="text p-4">
-            <h3>Margherita</h3>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-            <p class="price"><span>$2.90</span></p>
-          </div>
-        </div>
-      </div> -->
+      <br>
     </div>
   </div>
 
@@ -107,106 +56,20 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-1.jpg);"></div>
+        <!-- TODO: que haga las iteraciones 4 veces y luego se vuelva a poner la clase "col-md-6" para tener otra columna -->
+        <div *ngFor="let pizza of menuService.productos" class="pricing-entry d-flex ftco-animate">
+          <div class="img" style="background-image: url(assets/images/{{pizza.nombre}}.jpg);"></div>
           <div class="desc pl-3">
             <div class="d-flex text align-items-center">
-              <h3><span>Italian Pizza</span></h3>
-              <span class="price">$20.00</span>
+              <h3><span>{{pizza.nombre}}</span></h3>
+              <span class="price">{{pizza.precio}}€</span>
             </div>
             <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
+              <p>{{pizza.descripcion}}</p>
             </div>
           </div>
         </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-2.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Hawaiian Pizza</span></h3>
-              <span class="price">$29.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-3.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Greek Pizza</span></h3>
-              <span class="price">$20.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-4.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Bacon Crispy Thins</span></h3>
-              <span class="price">$20.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-5.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Hawaiian Special</span></h3>
-              <span class="price">$49.91</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-6.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Ultimate Overload</span></h3>
-              <span class="price">$20.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-7.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Bacon Pizza</span></h3>
-              <span class="price">$20.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-        <div class="pricing-entry d-flex ftco-animate">
-          <div class="img" style="background-image: url(assets/images/pizza-8.jpg);"></div>
-          <div class="desc pl-3">
-            <div class="d-flex text align-items-center">
-              <h3><span>Ham &amp; Pineapple</span></h3>
-              <span class="price">$20.00</span>
-            </div>
-            <div class="d-block">
-              <p>A small river named Duden flows by their place and supplies</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> 
     </div>
   </div>
 </section>

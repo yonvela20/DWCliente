@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScriptService } from './../../servicios/service.scripts.service';
+import { ServiceMenuService } from 'src/app/servicios/service.menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +9,7 @@ import { ScriptService } from './../../servicios/service.scripts.service';
 })
 export class MenuComponent implements OnInit, OnDestroy {
 
-  constructor(public script: ScriptService) { }
+  constructor(public script: ScriptService, public menuService: ServiceMenuService) { }
 
   ngOnInit() {
     this.script.load('main').then(data => {
