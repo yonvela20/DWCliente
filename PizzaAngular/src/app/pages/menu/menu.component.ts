@@ -17,6 +17,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     }).catch(error => console.log(error));
   }
 
+  lessThan(i: number, j:number){
+    return i<j;
+  }
+
+  ruta(imagen: String){
+    return "assets/images/"+imagen;
+  }
+
   ngOnDestroy() {
 
   }
